@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="MybaitsPlus的基本用法">
+<title>MybatisPlus</title>
+
+<link rel='canonical' href='https://yanbin582.github.io/p/mybatisplus/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="MybatisPlus">
+<meta property='og:description' content="MybaitsPlus的基本用法">
+<meta property='og:url' content='https://yanbin582.github.io/p/mybatisplus/'>
+<meta property='og:site_name' content='严彬-yabi'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MybatisPlus' /><meta property='article:published_time' content='2024-10-11T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-11T00:00:00&#43;00:00'/><meta property='og:image' content='https://yanbin582.github.io/p/mybatisplus/Snipaste_2025-03-22_13-53-41.png' />
+<meta name="twitter:title" content="MybatisPlus">
+<meta name="twitter:description" content="MybaitsPlus的基本用法"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yanbin582.github.io/p/mybatisplus/Snipaste_2025-03-22_13-53-41.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu12865272696180347112.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🤪</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">严彬-yabi</a></h1>
+            <h2 class="site-description">记录学习与生活</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://blog.csdn.net/2301_80021118?spm=1000.2115.3001.5343'
+                        target="_blank"
+                        title="CSDN"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>C</title><path d="M16.5921 9.1962s-.354-3.298-3.627-3.39c-3.2741-.09-4.9552 2.474-4.9552 6.14 0 3.6651 1.858 6.5972 5.0451 6.5972 3.184 0 3.5381-3.665 3.5381-3.665l6.1041.365s.36 3.31-2.196 5.836c-2.552 2.5241-5.6901 2.9371-7.8762 2.9201-2.19-.017-5.2261.034-8.1602-2.97-2.938-3.0101-3.436-5.9302-3.436-8.8002 0-2.8701.556-6.6702 4.047-9.5502C7.444.72 9.849 0 12.254 0c10.0422 0 10.7172 9.2602 10.7172 9.2602z"/></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/yanbin582'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#快速开始"><strong>快速开始</strong></a></li>
+        <li><a href="#引入依赖"><strong>引入依赖</strong></a></li>
+        <li><a href="#定义mapper"><strong>定义Mapper</strong></a></li>
+        <li><a href="#测试"><strong>测试</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#21常见注解"><strong>2.1****常见注解</strong></a>
+      <ol>
+        <li><a href="#tablename">**@**<strong>TableName</strong></a></li>
+        <li><a href="#tableid"><strong>@TableId</strong></a></li>
+        <li><a href="#tablefield"><strong>@TableField</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#常见配置"><strong>常见配置</strong></a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#条件构造器"><strong>条件构造器</strong></a>
+      <ol>
+        <li><a href="#querywrapper"><strong>QueryWrapper</strong></a></li>
+        <li><a href="#updatewrapper"><strong>UpdateWrapper</strong></a>
+          <ol>
+            <li><a href="#lambdaquerywrapper">****<strong>LambdaQueryWrapper</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#自定义sql"><strong><strong>自定义</strong></strong>SQL**</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/mybatisplus/">
+                <img src="/p/mybatisplus/Snipaste_2025-03-22_13-53-41_hu9394310657120434666.png"
+                        srcset="/p/mybatisplus/Snipaste_2025-03-22_13-53-41_hu9394310657120434666.png 800w, /p/mybatisplus/Snipaste_2025-03-22_13-53-41_hu17114479309964146965.png 1600w"
+                        width="800" 
+                        height="225" 
+                        loading="lazy"
+                        alt="Featured image of post MybatisPlus" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/mybatisplus/" >
+                MybatisPlus
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/mybatisplus/">MybatisPlus</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            MybaitsPlus的基本用法
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-10-11</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="1快速入门mybaitsplus">1.<strong>快速入门MybaitsPlus</strong>
+</h1><h3 id="快速开始"><strong>快速开始</strong>
+</h3><p>比如我们要实现User表的CRUD，只需要下面几步：</p>
+<ul>
+<li>引入MybatisPlus依赖</li>
+<li>定义Mapper</li>
+</ul>
+<h3 id="引入依赖"><strong>引入依赖</strong>
+</h3><p>MybatisPlus提供了starter，实现了自动Mybatis以及MybatisPlus的自动装配功能，坐标如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-XML" data-lang="XML"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.baomidou<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>mybatis-plus-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>3.5.3.1<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于这个starter包含对mybatis的自动装配，因此完全可以替换掉Mybatis的starter。</p>
+<h3 id="定义mapper"><strong>定义Mapper</strong>
+</h3><p>为了简化单表CRUD，MybatisPlus提供了一个基础的<code>BaseMapper</code>接口，其中已经实现了单表的CRUD：</p>
+<p><img src="/p/mybatisplus/-17426215788042.png"
+	width="812"
+	height="657"
+	srcset="/p/mybatisplus/-17426215788042_hu7146918130930847163.png 480w, /p/mybatisplus/-17426215788042_hu10329978405363597247.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="296px"
+	
+></p>
+<p>因此我们自定义的Mapper只要实现了这个<code>BaseMapper</code>，就无需自己实现单表CRUD了。 修改mp-demo中的<code>com.itheima.mp.mapper</code>包下的<code>UserMapper</code>接口，让其继承<code>BaseMapper</code>：</p>
+<p>代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.itheima.mp.mapper</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.baomidou.mybatisplus.core.mapper.BaseMapper</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.itheima.mp.domain.po.User</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">UserMapper</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BaseMapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="测试"><strong>测试</strong>
+</h3><p>新建一个测试类，编写几个单元测试，测试基本的CRUD功能：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">UserMapperTest</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Autowired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserMapper</span><span class="w"> </span><span class="n">userMapper</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testInsert</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">5L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setUsername</span><span class="p">(</span><span class="s">&#34;Lucy&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setPassword</span><span class="p">(</span><span class="s">&#34;123&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setPhone</span><span class="p">(</span><span class="s">&#34;18688990011&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setBalance</span><span class="p">(</span><span class="n">200</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setInfo</span><span class="p">(</span><span class="s">&#34;{\&#34;age\&#34;: 24, \&#34;intro\&#34;: \&#34;英文老师\&#34;, \&#34;gender\&#34;: \&#34;female\&#34;}&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setCreateTime</span><span class="p">(</span><span class="n">LocalDateTime</span><span class="p">.</span><span class="na">now</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setUpdateTime</span><span class="p">(</span><span class="n">LocalDateTime</span><span class="p">.</span><span class="na">now</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">userMapper</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testSelectById</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">selectById</span><span class="p">(</span><span class="n">5L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;user = &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testSelectByIds</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">selectBatchIds</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">1L</span><span class="p">,</span><span class="w"> </span><span class="n">2L</span><span class="p">,</span><span class="w"> </span><span class="n">3L</span><span class="p">,</span><span class="w"> </span><span class="n">4L</span><span class="p">,</span><span class="w"> </span><span class="n">5L</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">users</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testUpdateById</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">5L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setBalance</span><span class="p">(</span><span class="n">20000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">userMapper</span><span class="p">.</span><span class="na">updateById</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testDelete</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">userMapper</span><span class="p">.</span><span class="na">deleteById</span><span class="p">(</span><span class="n">5L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>只需要继承BaseMapper就能省去所有的单表CRUD，是不是非常简单！</p>
+<h2 id="21常见注解"><strong>2.1****常见注解</strong>
+</h2><p>在刚刚的入门案例中，我们仅仅引入了依赖，继承了BaseMapper就能使用MybatisPlus，非常简单。但是问题来了： MybatisPlus如何知道我们要查询的是哪张表？表中有哪些字段呢？</p>
+<p>大家回忆一下，UserMapper在继承BaseMapper的时候指定了一个泛型：</p>
+<p><img src="/p/mybatisplus/-17426220580425.png"
+	width="773"
+	height="288"
+	srcset="/p/mybatisplus/-17426220580425_hu407632639201163542.png 480w, /p/mybatisplus/-17426220580425_hu5101024430919677864.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="268"
+		data-flex-basis="644px"
+	
+></p>
+<p>泛型中的User就是与数据库对应的PO.</p>
+<p>MybatisPlus就是根据PO实体的信息来推断出表的信息，从而生成SQL的。默认情况下：</p>
+<ul>
+<li>MybatisPlus会把PO实体的类名驼峰转下划线作为表名</li>
+<li>MybatisPlus会把PO实体的所有变量名驼峰转下划线作为表的字段名，并根据变量类型推断字段类型</li>
+<li>MybatisPlus会把名为id的字段作为主键</li>
+</ul>
+<p>但很多情况下，默认的实现与实际场景不符，因此MybatisPlus提供了一些注解便于我们声明表信息。</p>
+<h3 id="tablename">**@**<strong>TableName</strong>
+</h3><p>说明：</p>
+<ul>
+<li>描述：表名注解，标识实体类对应的表</li>
+<li>使用位置：实体类</li>
+</ul>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@TableName</span><span class="p">(</span><span class="s">&#34;user&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>TableName注解除了指定表名以外，还可以指定很多其它属性：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>属性</strong></th>
+          <th><strong>类型</strong></th>
+          <th><strong>必须指定</strong></th>
+          <th><strong>默认值</strong></th>
+          <th><strong>描述</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>value</td>
+          <td>String</td>
+          <td>否</td>
+          <td>&quot;&quot;</td>
+          <td>表名</td>
+      </tr>
+      <tr>
+          <td>schema</td>
+          <td>String</td>
+          <td>否</td>
+          <td>&quot;&quot;</td>
+          <td>schema</td>
+      </tr>
+      <tr>
+          <td>keepGlobalPrefix</td>
+          <td>boolean</td>
+          <td>否</td>
+          <td>false</td>
+          <td>是否保持使用全局的 tablePrefix 的值（当全局 tablePrefix 生效时）</td>
+      </tr>
+      <tr>
+          <td>resultMap</td>
+          <td>String</td>
+          <td>否</td>
+          <td>&quot;&quot;</td>
+          <td>xml 中 resultMap 的 id（用于满足特定类型的实体类对象绑定）</td>
+      </tr>
+      <tr>
+          <td>autoResultMap</td>
+          <td>boolean</td>
+          <td>否</td>
+          <td>false</td>
+          <td>是否自动构建 resultMap 并使用（如果设置 resultMap 则不会进行 resultMap 的自动构建与注入）</td>
+      </tr>
+      <tr>
+          <td>excludeProperty</td>
+          <td>String[]</td>
+          <td>否</td>
+          <td>{}</td>
+          <td>需要排除的属性名 @since 3.3.1</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="tableid"><strong>@TableId</strong>
+</h3><p>说明：</p>
+<ul>
+<li>描述：主键注解，标识实体类中的主键字段</li>
+<li>使用位置：实体类的主键字段</li>
+</ul>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@TableName</span><span class="p">(</span><span class="s">&#34;user&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@TableId</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>TableId</code>注解支持两个属性：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>属性</strong></th>
+          <th style="text-align: left"><strong>类型</strong></th>
+          <th style="text-align: left"><strong>必须指定</strong></th>
+          <th style="text-align: left"><strong>默认值</strong></th>
+          <th style="text-align: left"><strong>描述</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">value</td>
+          <td style="text-align: left">String</td>
+          <td style="text-align: left">否</td>
+          <td style="text-align: left">&quot;&quot;</td>
+          <td style="text-align: left">表名</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">type</td>
+          <td style="text-align: left">Enum</td>
+          <td style="text-align: left">否</td>
+          <td style="text-align: left">IdType.NONE</td>
+          <td style="text-align: left">指定主键类型</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><code>IdType</code>支持的类型有：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>值</strong></th>
+          <th style="text-align: left"><strong>描述</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">AUTO</td>
+          <td style="text-align: left">数据库 ID 自增</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NONE</td>
+          <td style="text-align: left">无状态，该类型为未设置主键类型（注解里等于跟随全局，全局里约等于 INPUT）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">INPUT</td>
+          <td style="text-align: left">insert 前自行 set 主键值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ASSIGN_ID</td>
+          <td style="text-align: left">分配 ID(主键类型为 Number(Long 和 Integer)或 String)(since 3.3.0),使用接口IdentifierGenerator的方法nextId(默认实现类为DefaultIdentifierGenerator雪花算法)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ASSIGN_UUID</td>
+          <td style="text-align: left">分配 UUID,主键类型为 String(since 3.3.0),使用接口IdentifierGenerator的方法nextUUID(默认 default 方法)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ID_WORKER</td>
+          <td style="text-align: left">分布式全局唯一 ID 长整型类型(please use ASSIGN_ID)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">UUID</td>
+          <td style="text-align: left">32 位 UUID 字符串(please use ASSIGN_UUID)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ID_WORKER_STR</td>
+          <td style="text-align: left">分布式全局唯一 ID 字符串类型(please use ASSIGN_ID)</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>这里比较常见的有三种：</p>
+<ul>
+<li><code>AUTO</code>：利用数据库的id自增长</li>
+<li><code>INPUT</code>：手动生成id</li>
+<li><code>ASSIGN_ID</code>：雪花算法生成<code>Long</code>类型的全局唯一id，这是默认的ID策略</li>
+</ul>
+<h3 id="tablefield"><strong>@TableField</strong>
+</h3><p>说明：</p>
+<blockquote>
+<p>描述：普通字段注解</p>
+</blockquote>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@TableName</span><span class="p">(</span><span class="s">&#34;user&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@TableId</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@TableField</span><span class="p">(</span><span class="n">is_married</span><span class="s">&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s">    private Boolean isMarried;
+</span></span></span><span class="line"><span class="cl"><span class="s">    @TableField(&#34;</span><span class="err">`</span><span class="n">concat</span><span class="err">`</span><span class="s">&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s">    private String concat;
+</span></span></span><span class="line"><span class="cl"><span class="s">}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>一般情况下我们并不需要给字段添加<code>@TableField</code>注解，一些特殊情况除外：</p>
+<ul>
+<li>成员变量名与数据库字段名不一致</li>
+<li>成员变量是以<code>isXXX</code>命名，按照<code>JavaBean</code>的规范，<code>MybatisPlus</code>识别字段时会把<code>is</code>去除，这就导致与数据库不符。</li>
+<li>成员变量名与数据库一致，但是与数据库的关键字冲突。使用<code>@TableField</code>注解给字段名添加转义字符：````</li>
+</ul>
+<p>支持的其它属性如下：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>属性</strong></th>
+          <th><strong>类型</strong></th>
+          <th><strong>必填</strong></th>
+          <th><strong>默认值</strong></th>
+          <th><strong>描述</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>value</td>
+          <td>String</td>
+          <td>否</td>
+          <td>&quot;&quot;</td>
+          <td>数据库字段名</td>
+      </tr>
+      <tr>
+          <td>exist</td>
+          <td>boolean</td>
+          <td>否</td>
+          <td>true</td>
+          <td>是否为数据库表字段</td>
+      </tr>
+      <tr>
+          <td>condition</td>
+          <td>String</td>
+          <td>否</td>
+          <td>&quot;&quot;</td>
+          <td>字段 where 实体查询比较条件，有值设置则按设置的值为准，没有则为默认全局的 %s=#{%s}，<a class="link" href="https://github.com/baomidou/mybatis-plus/blob/3.0/mybatis-plus-annotation/src/main/java/com/baomidou/mybatisplus/annotation/SqlCondition.java"  target="_blank" rel="noopener"
+    >参考(opens new window)</a></td>
+      </tr>
+      <tr>
+          <td>update</td>
+          <td>String</td>
+          <td>否</td>
+          <td>&quot;&quot;</td>
+          <td>字段 update set 部分注入，例如：当在version字段上注解update=&quot;%s+1&quot; 表示更新时会 set version=version+1 （该属性优先级高于 el 属性）</td>
+      </tr>
+      <tr>
+          <td>insertStrategy</td>
+          <td>Enum</td>
+          <td>否</td>
+          <td>FieldStrategy.DEFAULT</td>
+          <td>举例：NOT_NULL insert into table_a(<if test="columnProperty != null">column</if>) values (<if test="columnProperty != null">#{columnProperty}</if>)</td>
+      </tr>
+      <tr>
+          <td>updateStrategy</td>
+          <td>Enum</td>
+          <td>否</td>
+          <td>FieldStrategy.DEFAULT</td>
+          <td>举例：IGNORED update table_a set column=#{columnProperty}</td>
+      </tr>
+      <tr>
+          <td>whereStrategy</td>
+          <td>Enum</td>
+          <td>否</td>
+          <td>FieldStrategy.DEFAULT</td>
+          <td>举例：NOT_EMPTY where <if test="columnProperty != null and columnProperty!=''">column=#{columnProperty}</if></td>
+      </tr>
+      <tr>
+          <td>fill</td>
+          <td>Enum</td>
+          <td>否</td>
+          <td>FieldFill.DEFAULT</td>
+          <td>字段自动填充策略</td>
+      </tr>
+      <tr>
+          <td>select</td>
+          <td>boolean</td>
+          <td>否</td>
+          <td>true</td>
+          <td>是否进行 select 查询</td>
+      </tr>
+      <tr>
+          <td>keepGlobalFormat</td>
+          <td>boolean</td>
+          <td>否</td>
+          <td>false</td>
+          <td>是否保持使用全局的 format 进行处理</td>
+      </tr>
+      <tr>
+          <td>jdbcType</td>
+          <td>JdbcType</td>
+          <td>否</td>
+          <td>JdbcType.UNDEFINED</td>
+          <td>JDBC 类型 (该默认值不代表会按照该值生效)</td>
+      </tr>
+      <tr>
+          <td>typeHandler</td>
+          <td>TypeHander</td>
+          <td>否</td>
+          <td></td>
+          <td>类型处理器 (该默认值不代表会按照该值生效)</td>
+      </tr>
+      <tr>
+          <td>numericScale</td>
+          <td>String</td>
+          <td>否</td>
+          <td>&quot;&quot;</td>
+          <td>指定小数点后保留的位数</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="常见配置"><strong>常见配置</strong>
+</h2><p>MybatisPlus也支持基于yaml文件的自定义配置，详见官方文档：</p>
+<p><a class="link" href="https://baomidou.com/reference/"  target="_blank" rel="noopener"
+    >https://baomidou.com/reference/</a></p>
+<p>大多数的配置都有默认值，因此我们都无需配置。但还有一些是没有默认值的，例如:</p>
+<ul>
+<li>实体类的别名扫描包</li>
+<li>全局id类型</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">mybatis-plus</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type-aliases-package</span><span class="p">:</span><span class="w"> </span><span class="l">com.itheima.mp.domain.po</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">global-config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">db-config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">id-type</span><span class="p">:</span><span class="w"> </span><span class="l">auto</span><span class="w"> </span><span class="c"># 全局id类型为自增长</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>需要注意的是，MyBatisPlus也支持手写SQL的，而mapper文件的读取地址可以自己配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">mybatis-plus</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mapper-locations</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;classpath*:/mapper/**/*.xml&#34;</span><span class="w"> </span><span class="c"># Mapper.xml文件地址，当前这个是默认值。</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到默认值是<code>classpath*:/mapper/**/*.xml</code>，也就是说我们只要把mapper.xml文件放置这个目录下就一定会被加载。</p>
+<p>例如，我们新建一个<code>UserMapper.xml</code>文件：</p>
+<p><img src="/p/mybatisplus/-17426223193897.png"
+	width="754"
+	height="343"
+	srcset="/p/mybatisplus/-17426223193897_hu10659757100394856084.png 480w, /p/mybatisplus/-17426223193897_hu10417775341006414141.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="219"
+		data-flex-basis="527px"
+	
+></p>
+<p>然后在其中定义一个方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-XML" data-lang="XML"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.itheima.mp.mapper.UserMapper&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;queryById&#34;</span> <span class="na">resultType=</span><span class="s">&#34;User&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        SELECT * FROM user WHERE id = #{id}
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/select&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在测试类<code>UserMapperTest</code>中测试该方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">void</span><span class="w"> </span><span class="nf">testQuery</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">queryById</span><span class="p">(</span><span class="n">1L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;user = &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="2核心功能"><strong>2.核心功能</strong>
+</h1><p>刚才的案例中都是以id为条件的简单CRUD，一些复杂条件的SQL语句就要用到一些更高级的功能了。</p>
+<h2 id="条件构造器"><strong>条件构造器</strong>
+</h2><p>除了新增以外，修改、删除、查询的SQL语句都需要指定where条件。因此BaseMapper中提供的相关方法除了以<code>id</code>作为<code>where</code>条件以外，还支持更加复杂的<code>where</code>条件。</p>
+<p><img src="/p/mybatisplus/-17426225644139.png"
+	width="864"
+	height="387"
+	srcset="/p/mybatisplus/-17426225644139_hu7039815830887122748.png 480w, /p/mybatisplus/-17426225644139_hu3260394687555821163.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="223"
+		data-flex-basis="535px"
+	
+></p>
+<p>参数中的<code>Wrapper</code>就是条件构造的抽象类，其下有很多默认实现，继承关系如图：</p>
+<p><img src="/p/mybatisplus/-174262256441310.png"
+	width="1212"
+	height="504"
+	srcset="/p/mybatisplus/-174262256441310_hu6128778200418962168.png 480w, /p/mybatisplus/-174262256441310_hu18180274857975863389.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="240"
+		data-flex-basis="577px"
+	
+></p>
+<p><code>Wrapper</code>的子类<code>AbstractWrapper</code>提供了where中包含的所有条件构造方法：</p>
+<p><img src="/p/mybatisplus/-174262256441311.png"
+	width="836"
+	height="807"
+	srcset="/p/mybatisplus/-174262256441311_hu4709409688651382972.png 480w, /p/mybatisplus/-174262256441311_hu4261609799370268434.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="248px"
+	
+></p>
+<p>而QueryWrapper在AbstractWrapper的基础上拓展了一个select方法，允许指定查询字段：</p>
+<p><img src="/p/mybatisplus/-174262256441312.png"
+	width="821"
+	height="158"
+	srcset="/p/mybatisplus/-174262256441312_hu15774237723867998710.png 480w, /p/mybatisplus/-174262256441312_hu16152378298250563610.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="519"
+		data-flex-basis="1247px"
+	
+></p>
+<p>而UpdateWrapper在AbstractWrapper的基础上拓展了一个set方法，允许指定SQL中的SET部分：</p>
+<p><img src="/p/mybatisplus/-174262256441313.png"
+	width="825"
+	height="156"
+	srcset="/p/mybatisplus/-174262256441313_hu13133684508173785951.png 480w, /p/mybatisplus/-174262256441313_hu15495304833253999945.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="528"
+		data-flex-basis="1269px"
+	
+></p>
+<p>接下来，我们就来看看如何利用<code>Wrapper</code>实现复杂查询。</p>
+<h3 id="querywrapper"><strong>QueryWrapper</strong>
+</h3><p>无论是修改、删除、查询，都可以使用QueryWrapper来构建查询条件。接下来看一些例子： <strong>查询</strong>：查询出名字中带<code>o</code>的，存款大于等于1000元的人。代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">void</span><span class="w"> </span><span class="nf">testQueryWrapper</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 1.构建查询条件 where name like &#34;%o%&#34; AND balance &gt;= 1000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">QueryWrapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">wrapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">QueryWrapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="s">&#34;id&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;username&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;info&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;balance&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">like</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;o&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">ge</span><span class="p">(</span><span class="s">&#34;balance&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">1000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 2.查询数据</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="n">wrapper</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">users</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>更新</strong>：更新用户名为jack的用户的余额为2000，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">void</span><span class="w"> </span><span class="nf">testUpdateByQueryWrapper</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 1.构建查询条件 where name = &#34;Jack&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">QueryWrapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">wrapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">QueryWrapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">().</span><span class="na">eq</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Jack&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 2.更新数据，user中非null字段都会作为set语句</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">user</span><span class="p">.</span><span class="na">setBalance</span><span class="p">(</span><span class="n">2000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">userMapper</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">wrapper</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="updatewrapper"><strong>UpdateWrapper</strong>
+</h3><p>基于BaseMapper中的update方法更新时只能直接赋值，对于一些复杂的需求就难以实现。 例如：更新id为<code>1,2,4</code>的用户的余额，扣200，对应的SQL应该是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">UPDATE</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">SET</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">200</span><span class="w"> </span><span class="n">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="p">(</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">4</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>SET的赋值结果是基于字段现有值的，这个时候就要利用UpdateWrapper中的setSql功能了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">void</span><span class="w"> </span><span class="nf">testUpdateWrapper</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">1L</span><span class="p">,</span><span class="w"> </span><span class="n">2L</span><span class="p">,</span><span class="w"> </span><span class="n">4L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 1.生成SQL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UpdateWrapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">wrapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UpdateWrapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">setSql</span><span class="p">(</span><span class="s">&#34;balance = balance - 200&#34;</span><span class="p">)</span><span class="w"> </span><span class="c1">// SET balance = balance - 200</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">in</span><span class="p">(</span><span class="s">&#34;id&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">ids</span><span class="p">);</span><span class="w"> </span><span class="c1">// WHERE id in (1, 2, 4)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2.更新，注意第一个参数可以给null，也就是不填更新字段和数据，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 而是基于UpdateWrapper中的setSQL来更新</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">userMapper</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">wrapper</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="lambdaquerywrapper">****<strong>LambdaQueryWrapper</strong>
+</h4><p>无论是QueryWrapper还是UpdateWrapper在构造条件的时候都需要写死字段名称，会出现字符串<code>魔法值</code>。这在编程规范中显然是不推荐的。 那怎么样才能不写字段名，又能知道字段名呢？</p>
+<p>其中一种办法是基于变量的<code>gettter</code>方法结合反射技术。因此我们只要将条件对应的字段的<code>getter</code>方法传递给MybatisPlus，它就能计算出对应的变量名了。而传递方法可以使用JDK8中的<code>方法引用</code>和<code>Lambda</code>表达式。 因此MybatisPlus又提供了一套基于Lambda的Wrapper，包含两个：</p>
+<ul>
+<li>LambdaQueryWrapper</li>
+<li>LambdaUpdateWrapper</li>
+</ul>
+<p>分别对应QueryWrapper和UpdateWrapper</p>
+<p>其使用方式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">void</span><span class="w"> </span><span class="nf">testLambdaQueryWrapper</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 1.构建条件 WHERE username LIKE &#34;%o%&#34; AND balance &gt;= 1000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">QueryWrapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">wrapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">QueryWrapper</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">wrapper</span><span class="p">.</span><span class="na">lambda</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="n">User</span><span class="p">::</span><span class="n">getId</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="p">::</span><span class="n">getUsername</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="p">::</span><span class="n">getInfo</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="p">::</span><span class="n">getBalance</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">like</span><span class="p">(</span><span class="n">User</span><span class="p">::</span><span class="n">getUsername</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;o&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">ge</span><span class="p">(</span><span class="n">User</span><span class="p">::</span><span class="n">getBalance</span><span class="p">,</span><span class="w"> </span><span class="n">1000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 2.查询</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="n">wrapper</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">users</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="自定义sql"><strong><strong>自定义</strong></strong>SQL**
+</h2>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mybatisplus/">MybatisPlus</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2025 严彬-yabi
+    </section>
+    
+    <section class="powerby">
+        
+            学习记录 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
