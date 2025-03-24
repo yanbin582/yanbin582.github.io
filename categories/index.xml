@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>严彬-yabi</copyright>
-        <lastBuildDate>Fri, 11 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://yanbin582.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 24 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yanbin582.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>算法题目</title>
+        <link>https://yanbin582.github.io/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE/</link>
+        <pubDate>Mon, 24 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yanbin582.github.io/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>MybatisPlus</title>
         <link>https://yanbin582.github.io/categories/mybatisplus/</link>
         <pubDate>Fri, 11 Oct 2024 00:00:00 +0000</pubDate>
