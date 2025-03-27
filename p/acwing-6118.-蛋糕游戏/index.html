@@ -439,12 +439,7 @@
 <p>总结</p>
 <p>通过上述步骤，我们利用前缀和数组来高效计算区间内蛋糕的总量，通过枚举不同的左右两端蛋糕组合，找出埃尔茜能藏起来的最大蛋糕量，进而计算出贝茜吃到的蛋糕量，从而解决了该博弈问题。</p>
 <h1 id="答案">答案：
-</h1><p>import java.io.*;</p>
-<p>public class Main {
-public static void main(String[] args) throws IOException {
-BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));</p>
-<div class="highlight"><div class="chroma">
+</h1><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -470,9 +465,22 @@ BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));</p>
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">());</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">BufferedReader</span><span class="w"> </span><span class="n">br</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedReader</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamReader</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">BufferedWriter</span><span class="w"> </span><span class="n">bw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedWriter</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">OutputStreamWriter</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">));</span><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">());</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="o">--</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">());</span><span class="w">
@@ -496,10 +504,10 @@ BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">br</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">bw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>}</p>
-
+</div>
 </section>
 
 
@@ -526,6 +534,78 @@ BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));</p>
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/acwing-5437.-%E6%8B%90%E6%9D%96%E7%B3%96%E7%9B%9B%E5%AE%B4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/acwing-5437.-%E6%8B%90%E6%9D%96%E7%B3%96%E7%9B%9B%E5%AE%B4/image.54af070f9c80a13a26c1b3981d6c9e15_hu2240478532063431981.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post AcWing 5437. 拐杖糖盛宴"
+                        
+                        data-hash="md5-VK8HD5yAoTomwbOYHWyeFQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AcWing 5437. 拐杖糖盛宴</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/acwing-5438.-%E5%AF%86%E6%8E%A5%E7%89%9B%E8%BF%BD%E8%B8%AA/">
+        
+        
+            <div class="article-image">
+                <img src="/p/acwing-5438.-%E5%AF%86%E6%8E%A5%E7%89%9B%E8%BF%BD%E8%B8%AA/image.54af070f9c80a13a26c1b3981d6c9e15_hu2240478532063431981.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post AcWing 5438. 密接牛追踪"
+                        
+                        data-hash="md5-VK8HD5yAoTomwbOYHWyeFQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AcWing 5438. 密接牛追踪</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/acwing-6135.-%E5%A5%B6%E7%89%9B%E4%BD%93%E6%A3%80/">
+        
+        
+            <div class="article-image">
+                <img src="/p/acwing-6135.-%E5%A5%B6%E7%89%9B%E4%BD%93%E6%A3%80/image.54af070f9c80a13a26c1b3981d6c9e15_hu2240478532063431981.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post AcWing 6135. 奶牛体检"
+                        
+                        data-hash="md5-VK8HD5yAoTomwbOYHWyeFQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AcWing 6135. 奶牛体检</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -570,54 +650,6 @@ BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));</p>
 
         <div class="article-details">
             <h2 class="article-title">天梯L1-009 N个数求和</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/acwing-6122.-%E5%86%9C%E5%A4%AB%E7%BA%A6%E7%BF%B0%E7%9A%84%E5%A5%B6%E9%85%AA%E5%9D%97/">
-        
-        
-            <div class="article-image">
-                <img src="/p/acwing-6122.-%E5%86%9C%E5%A4%AB%E7%BA%A6%E7%BF%B0%E7%9A%84%E5%A5%B6%E9%85%AA%E5%9D%97/image.54af070f9c80a13a26c1b3981d6c9e15_hu2240478532063431981.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post AcWing 6122. 农夫约翰的奶酪块"
-                        
-                        data-hash="md5-VK8HD5yAoTomwbOYHWyeFQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">AcWing 6122. 农夫约翰的奶酪块</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/acwing-6123.-%E5%93%9E%E5%8F%AB%E6%97%B6%E9%97%B4/">
-        
-        
-            <div class="article-image">
-                <img src="/p/acwing-6123.-%E5%93%9E%E5%8F%AB%E6%97%B6%E9%97%B4/image.54af070f9c80a13a26c1b3981d6c9e15_hu2240478532063431981.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post AcWing 6123. 哞叫时间"
-                        
-                        data-hash="md5-VK8HD5yAoTomwbOYHWyeFQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">AcWing 6123. 哞叫时间</h2>
         </div>
     </a>
 </article>
