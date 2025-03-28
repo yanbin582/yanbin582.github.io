@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Jmeter快速入门">
+<title>Jmeter快速入门</title>
+
+<link rel='canonical' href='https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Jmeter快速入门">
+<meta property='og:description' content="Jmeter快速入门">
+<meta property='og:url' content='https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
+<meta property='og:site_name' content='严彬-yabi'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Java后端工具学习' /><meta property='article:published_time' content='2025-03-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-28T00:00:00&#43;00:00'/><meta property='og:image' content='https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/Snipaste_2025-03-28_17-48-09.png' />
+<meta name="twitter:title" content="Jmeter快速入门">
+<meta name="twitter:description" content="Jmeter快速入门"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/Snipaste_2025-03-28_17-48-09.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu12865272696180347112.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🤪</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">严彬-yabi</a></h1>
+            <h2 class="site-description">记录学习与生活</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://blog.csdn.net/2301_80021118?spm=1000.2115.3001.5343'
+                        target="_blank"
+                        title="CSDN"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>C</title><path d="M16.5921 9.1962s-.354-3.298-3.627-3.39c-3.2741-.09-4.9552 2.474-4.9552 6.14 0 3.6651 1.858 6.5972 5.0451 6.5972 3.184 0 3.5381-3.665 3.5381-3.665l6.1041.365s.36 3.31-2.196 5.836c-2.552 2.5241-5.6901 2.9371-7.8762 2.9201-2.19-.017-5.2261.034-8.1602-2.97-2.938-3.0101-3.436-5.9302-3.436-8.8002 0-2.8701.556-6.6702 4.047-9.5502C7.444.72 9.849 0 12.254 0c10.0422 0 10.7172 9.2602 10.7172 9.2602z"/></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/yanbin582'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#11下载">1.1.下载</a></li>
+    <li><a href="#12解压">1.2.解压</a>
+      <ol>
+        <li><a href="#13运行">1.3.运行</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#21设置中文语言">2.1.设置中文语言</a></li>
+    <li><a href="#22基本用法">2.2.基本用法</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+                <img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/Snipaste_2025-03-28_17-48-09_hu2613393574503077930.png"
+                        srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/Snipaste_2025-03-28_17-48-09_hu2613393574503077930.png 800w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/Snipaste_2025-03-28_17-48-09_hu5464634020330472671.png 1600w"
+                        width="800" 
+                        height="287" 
+                        loading="lazy"
+                        alt="Featured image of post Jmeter快速入门" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java%E5%90%8E%E7%AB%AF%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/" >
+                Java后端工具学习
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">Jmeter快速入门</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Jmeter快速入门
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-03-28</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="jmeter快速入门">Jmeter快速入门
+</h1><h1 id="1安装jmeter">1.安装Jmeter
+</h1><p>Jmeter依赖于JDK，所以必须确保当前计算机上已经安装了JDK，并且配置了环境变量。</p>
+<h2 id="11下载">1.1.下载
+</h2><p>可以Apache Jmeter官网下载，地址：http://jmeter.apache.org/download_jmeter.cgi</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154845586.png"
+	width="584"
+	height="303"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154845586_hu8315594361802685780.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154845586_hu18107142414454138944.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328154845586"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="192"
+		data-flex-basis="462px"
+	
+></p>
+<h2 id="12解压">1.2.解压
+</h2><p>因为下载的是zip包，解压缩即可使用，目录结构如下：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154924748.png"
+	width="591"
+	height="327"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154924748_hu15840467720538196939.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154924748_hu17053714888350576193.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328154924748"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="433px"
+	
+></p>
+<p>其中的bin目录就是执行的脚本，其中包含启动脚本：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154930443.png"
+	width="517"
+	height="326"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154930443_hu13983510443178732649.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154930443_hu1373340139011102224.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328154930443"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="158"
+		data-flex-basis="380px"
+	
+></p>
+<h3 id="13运行">1.3.运行
+</h3><p>双击即可运行，但是有两点注意：</p>
+<ul>
+<li>启动速度比较慢，要耐心等待</li>
+<li>启动后黑窗口不能关闭，否则Jmeter也跟着关闭了</li>
+</ul>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154937956.png"
+	width="591"
+	height="337"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154937956_hu7175881429041480082.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154937956_hu695600551284393333.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328154937956"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="175"
+		data-flex-basis="420px"
+	
+></p>
+<h1 id="2快速入门">2.快速入门
+</h1><h2 id="21设置中文语言">2.1.设置中文语言
+</h2><p>默认Jmeter的语言是英文，需要设置：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154944162.png"
+	width="594"
+	height="264"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154944162_hu7199235746596781480.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154944162_hu12588304480481650358.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328154944162"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="225"
+		data-flex-basis="540px"
+	
+></p>
+<p>效果：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154949940.png"
+	width="591"
+	height="305"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154949940_hu8716278595078488742.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154949940_hu2276103014701218837.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328154949940"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="465px"
+	
+></p>
+<blockquote>
+<p><strong>注意</strong>：上面的配置只能保证本次运行是中文，如果要永久中文，需要修改Jmeter的配置文件</p>
+</blockquote>
+<p>打开jmeter文件夹，在bin目录中找到 <strong>jmeter.properties</strong>，添加下面配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-properties" data-lang="properties"><span class="line"><span class="cl"><span class="na">language</span><span class="o">=</span><span class="s">zh_CN</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154958736.png"
+	width="591"
+	height="130"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154958736_hu1733530432779623921.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154958736_hu16350079241824700791.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328154958736"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="454"
+		data-flex-basis="1091px"
+	
+></p>
+<blockquote>
+<p>注意：前面不要出现#，#代表注释，另外这里是下划线，不是中划线</p>
+</blockquote>
+<h2 id="22基本用法">2.2.基本用法
+</h2><p>在测试计划上点鼠标右键，选择添加 &gt; 线程（用户） &gt; 线程组：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155007489.png"
+	width="590"
+	height="339"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155007489_hu13781260945911902166.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155007489_hu13481236629167899603.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328155007489"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="417px"
+	
+></p>
+<p>在新增的线程组中，填写线程信息：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155013529.png"
+	width="591"
+	height="195"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155013529_hu1552605144177862009.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155013529_hu6965782260199346131.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328155013529"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="303"
+		data-flex-basis="727px"
+	
+></p>
+<p>给线程组点鼠标右键，添加http取样器：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155018342.png"
+	width="585"
+	height="216"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155018342_hu10751764079906638148.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155018342_hu10847680166426448650.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328155018342"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="270"
+		data-flex-basis="650px"
+	
+></p>
+<p>编写取样器内容：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155024468.png"
+	width="585"
+	height="205"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155024468_hu4707557489025595431.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155024468_hu17595291885134424958.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328155024468"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="285"
+		data-flex-basis="684px"
+	
+></p>
+<p>添加监听报告：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155029569.png"
+	width="619"
+	height="355"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155029569_hu7996809682242823146.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155029569_hu14740744257449935026.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328155029569"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="418px"
+	
+></p>
+<p>添加监听结果树：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155037101.png"
+	width="598"
+	height="339"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155037101_hu330003449939172070.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155037101_hu8160686719756156665.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328155037101"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="176"
+		data-flex-basis="423px"
+	
+></p>
+<p>汇总报告结果：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155041855.png"
+	width="609"
+	height="73"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155041855_hu3901712770095141646.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155041855_hu2441239574637062121.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328155041855"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="834"
+		data-flex-basis="2002px"
+	
+></p>
+<p>结果树：</p>
+<p><img src="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155050326.png"
+	width="597"
+	height="420"
+	srcset="/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155050326_hu13163988412423936674.png 480w, /p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155050326_hu3950899546552167373.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250328155050326"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="341px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java%E5%90%8E%E7%AB%AF%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/">Java后端工具学习</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="yanbin582/yanbin582.github.io"
+    data-repo-id="R_kgDOOLrAyA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOOLrAyM4CoeXT"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark_dimmed');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2025 严彬-yabi
+    </section>
+    
+    <section class="powerby">
+        
+            学习记录 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

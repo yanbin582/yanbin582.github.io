@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Java后端 on 严彬-yabi</title>
+        <link>https://yanbin582.github.io/tags/java%E5%90%8E%E7%AB%AF/</link>
+        <description>Recent content in Java后端 on 严彬-yabi</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>严彬-yabi</copyright>
+        <lastBuildDate>Fri, 28 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yanbin582.github.io/tags/java%E5%90%8E%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>服务保护和分布式事务</title>
+        <link>https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</link>
+        <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</guid>
+        <description>&lt;img src="https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image.png" alt="Featured image of post 服务保护和分布式事务" /&gt;&lt;h1 id=&#34;服务保护和分布式事务&#34;&gt;服务保护和分布式事务：
+&lt;/h1&gt;&lt;h2 id=&#34;雪崩问题&#34;&gt;雪崩问题：
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134444211.png&#34;
+	width=&#34;1433&#34;
+	height=&#34;727&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134444211_hu10692973366335014378.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134444211_hu14707828031140839473.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328134444211&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;197&#34;
+		data-flex-basis=&#34;473px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在微服务远程调用的过程中，还存在几个问题需要解决。&lt;/p&gt;
+&lt;p&gt;首先是&lt;strong&gt;业务健壮性&lt;/strong&gt;问题：&lt;/p&gt;
+&lt;p&gt;例如在之前的查询购物车列表业务中，购物车服务需要查询最新的商品信息，与购物车数据做对比，提醒用户。大家设想一下，如果商品服务查询时发生故障，查询购物车列表在调用商品服 务时，是不是也会异常？从而导致购物车查询失败。但从业务角度来说，为了提升用户体验，即便是商品查询失败，购物车列表也应该正确展示出来，哪怕是不包含最新的商品信息。&lt;/p&gt;
+&lt;p&gt;还有&lt;strong&gt;级联****失败&lt;/strong&gt;问题：&lt;/p&gt;
+&lt;p&gt;还是查询购物车的业务，假如商品服务业务并发较高，占用过多Tomcat连接。可能会导致商品服务的所有接口响应时间增加，延迟变高，甚至是长时间阻塞直至查询失败。&lt;/p&gt;
+&lt;p&gt;此时查询购物车业务需要查询并等待商品查询结果，从而导致查询购物车列表业务的响应时间也变长，甚至也阻塞直至无法访问。而此时如果查询购物车的请求较多，可能导致购物车服务的Tomcat连接占用较多，所有接口的响应时间都会增加，整个服务性能很差， 甚至不可用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134732131.png&#34;
+	width=&#34;646&#34;
+	height=&#34;222&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134732131_hu5143234214393369048.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134732131_hu17737227579628393335.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328134732131&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;290&#34;
+		data-flex-basis=&#34;698px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;依次类推，整个微服务群中与购物车服务、商品服务等有调用关系的服务可能都会出现问题，最终导致整个集群不可用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134740809.png&#34;
+	width=&#34;645&#34;
+	height=&#34;356&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134740809_hu12707295697087109529.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134740809_hu3579318689707770108.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328134740809&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;181&#34;
+		data-flex-basis=&#34;434px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这就是&lt;strong&gt;级联****失败&lt;/strong&gt;问题，或者叫&lt;strong&gt;雪崩&lt;/strong&gt;问题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134833938.png&#34;
+	width=&#34;802&#34;
+	height=&#34;506&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134833938_hu3983712600898564792.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328134833938_hu5818190293669560707.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328134833938&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;158&#34;
+		data-flex-basis=&#34;380px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;雪崩的解决方案&#34;&gt;雪崩的解决方案
+&lt;/h3&gt;&lt;h4 id=&#34;解决雪崩问题常见的三种方案&#34;&gt;解决雪崩问题常见的三种方案：
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;请求限流：限制流量在服务可以处理的范围内，避免因为有突发流量而造成故障&lt;/li&gt;
+&lt;li&gt;线程隔离：控制业务可用的线程数量，将故障隔离在一定范围&lt;/li&gt;
+&lt;li&gt;服务熔断：将异常比例过高的接口断开，拒绝所有请求，直接走fallback&lt;/li&gt;
+&lt;li&gt;失败处理：定义fallback逻辑，让业务处理异常请求时不抛出异常，而是直接走定义好的备选方案，返回默认数据或者友好提示&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328135049682.png&#34;
+	width=&#34;1457&#34;
+	height=&#34;784&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328135049682_hu6687255263847310338.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328135049682_hu12251954498459728239.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328135049682&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;446px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328135616142.png&#34;
+	width=&#34;1528&#34;
+	height=&#34;673&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328135616142_hu11688983963109209858.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328135616142_hu4856191244461072633.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328135616142&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;227&#34;
+		data-flex-basis=&#34;544px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328151408697.png&#34;
+	width=&#34;1458&#34;
+	height=&#34;699&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328151408697_hu17865385929684124458.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328151408697_hu15240544370254346485.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328151408697&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;500px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;服务保护技术&#34;&gt;服务保护技术：
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328151916106.png&#34;
+	width=&#34;1567&#34;
+	height=&#34;622&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328151916106_hu3627962377500041051.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328151916106_hu6966611783901378980.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328151916106&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;251&#34;
+		data-flex-basis=&#34;604px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sentinel&#34;&gt;Sentinel
+&lt;/h2&gt;&lt;p&gt;Sentinel是阿里巴巴开源的一款微服务流量控制组件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328152222853.png&#34;
+	width=&#34;1471&#34;
+	height=&#34;739&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328152222853_hu11611818769654800600.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328152222853_hu17158714886342895896.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328152222853&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;199&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154304833.png&#34;
+	width=&#34;1535&#34;
+	height=&#34;610&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154304833_hu14858033004477268040.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154304833_hu13583577102681155430.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154304833&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;251&#34;
+		data-flex-basis=&#34;603px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;如何使用sentinel去实现请求限流&#34;&gt;如何使用sentinel去实现请求限流：
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154545157.png&#34;
+	width=&#34;1432&#34;
+	height=&#34;725&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154545157_hu1795594140089703556.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154545157_hu529152586502015425.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154545157&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;197&#34;
+		data-flex-basis=&#34;474px&#34;
+	
+&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154608977.png&#34;
+	width=&#34;1455&#34;
+	height=&#34;751&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154608977_hu12958048253095194447.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328154608977_hu9244955696341853336.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154608977&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;193&#34;
+		data-flex-basis=&#34;464px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;如何使用sentinel实现线程隔离&#34;&gt;如何使用sentinel实现线程隔离：
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328155727765.png&#34;
+	width=&#34;1515&#34;
+	height=&#34;591&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328155727765_hu8088164200089271434.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328155727765_hu16435971575198501613.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155727765&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;256&#34;
+		data-flex-basis=&#34;615px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328160044936.png&#34;
+	width=&#34;1465&#34;
+	height=&#34;752&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328160044936_hu9704880257457628.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328160044936_hu13474719073456330776.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328160044936&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;467px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;fallback&#34;&gt;Fallback：
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162144182.png&#34;
+	width=&#34;1470&#34;
+	height=&#34;694&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162144182_hu17411808764131928623.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162144182_hu1174666751271145321.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328162144182&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;211&#34;
+		data-flex-basis=&#34;508px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;通过FeignClient作为sentinel的簇点资源，来实现fallback的实现：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162338422.png&#34;
+	width=&#34;1368&#34;
+	height=&#34;730&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162338422_hu13329452272825079275.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162338422_hu12759957480571559002.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328162338422&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;187&#34;
+		data-flex-basis=&#34;449px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162510888.png&#34;
+	width=&#34;1368&#34;
+	height=&#34;730&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162510888_hu13329452272825079275.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162510888_hu12759957480571559002.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328162510888&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;187&#34;
+		data-flex-basis=&#34;449px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162519306.png&#34;
+	width=&#34;1293&#34;
+	height=&#34;730&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162519306_hu9117404108797955953.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328162519306_hu14201156775478739670.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328162519306&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;425px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;服务熔断&#34;&gt;服务熔断：
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328164819852.png&#34;
+	width=&#34;1545&#34;
+	height=&#34;670&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328164819852_hu6117770050770930936.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328164819852_hu11215610050417534463.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328164819852&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;553px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328170248044.png&#34;
+	width=&#34;1590&#34;
+	height=&#34;726&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328170248044_hu5961691856085408602.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328170248044_hu4318653981836796644.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328170248044&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;219&#34;
+		data-flex-basis=&#34;525px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328170300438.png&#34;
+	width=&#34;1428&#34;
+	height=&#34;774&#34;
+	srcset=&#34;https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328170300438_hu16936670252837832078.png 480w, https://yanbin582.github.io/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250328170300438_hu4869116906609958662.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328170300438&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;184&#34;
+		data-flex-basis=&#34;442px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;分布式事务&#34;&gt;分布式事务
+&lt;/h2&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Java后端工具学习 on 严彬-yabi</title>
+        <link>https://yanbin582.github.io/tags/java%E5%90%8E%E7%AB%AF%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/</link>
+        <description>Recent content in Java后端工具学习 on 严彬-yabi</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>严彬-yabi</copyright>
+        <lastBuildDate>Fri, 28 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yanbin582.github.io/tags/java%E5%90%8E%E7%AB%AF%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Jmeter快速入门</title>
+        <link>https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
+        <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/Snipaste_2025-03-28_17-48-09.png" alt="Featured image of post Jmeter快速入门" /&gt;&lt;h1 id=&#34;jmeter快速入门&#34;&gt;Jmeter快速入门
+&lt;/h1&gt;&lt;h1 id=&#34;1安装jmeter&#34;&gt;1.安装Jmeter
+&lt;/h1&gt;&lt;p&gt;Jmeter依赖于JDK，所以必须确保当前计算机上已经安装了JDK，并且配置了环境变量。&lt;/p&gt;
+&lt;h2 id=&#34;11下载&#34;&gt;1.1.下载
+&lt;/h2&gt;&lt;p&gt;可以Apache Jmeter官网下载，地址：http://jmeter.apache.org/download_jmeter.cgi&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154845586.png&#34;
+	width=&#34;584&#34;
+	height=&#34;303&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154845586_hu8315594361802685780.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154845586_hu18107142414454138944.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154845586&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;192&#34;
+		data-flex-basis=&#34;462px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;12解压&#34;&gt;1.2.解压
+&lt;/h2&gt;&lt;p&gt;因为下载的是zip包，解压缩即可使用，目录结构如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154924748.png&#34;
+	width=&#34;591&#34;
+	height=&#34;327&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154924748_hu15840467720538196939.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154924748_hu17053714888350576193.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154924748&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;433px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中的bin目录就是执行的脚本，其中包含启动脚本：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154930443.png&#34;
+	width=&#34;517&#34;
+	height=&#34;326&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154930443_hu13983510443178732649.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154930443_hu1373340139011102224.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154930443&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;158&#34;
+		data-flex-basis=&#34;380px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;13运行&#34;&gt;1.3.运行
+&lt;/h3&gt;&lt;p&gt;双击即可运行，但是有两点注意：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启动速度比较慢，要耐心等待&lt;/li&gt;
+&lt;li&gt;启动后黑窗口不能关闭，否则Jmeter也跟着关闭了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154937956.png&#34;
+	width=&#34;591&#34;
+	height=&#34;337&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154937956_hu7175881429041480082.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154937956_hu695600551284393333.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154937956&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;175&#34;
+		data-flex-basis=&#34;420px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2快速入门&#34;&gt;2.快速入门
+&lt;/h1&gt;&lt;h2 id=&#34;21设置中文语言&#34;&gt;2.1.设置中文语言
+&lt;/h2&gt;&lt;p&gt;默认Jmeter的语言是英文，需要设置：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154944162.png&#34;
+	width=&#34;594&#34;
+	height=&#34;264&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154944162_hu7199235746596781480.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154944162_hu12588304480481650358.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154944162&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;225&#34;
+		data-flex-basis=&#34;540px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;效果：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154949940.png&#34;
+	width=&#34;591&#34;
+	height=&#34;305&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154949940_hu8716278595078488742.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154949940_hu2276103014701218837.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154949940&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;193&#34;
+		data-flex-basis=&#34;465px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：上面的配置只能保证本次运行是中文，如果要永久中文，需要修改Jmeter的配置文件&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;打开jmeter文件夹，在bin目录中找到 &lt;strong&gt;jmeter.properties&lt;/strong&gt;，添加下面配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-properties&#34; data-lang=&#34;properties&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;language&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;zh_CN&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154958736.png&#34;
+	width=&#34;591&#34;
+	height=&#34;130&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154958736_hu1733530432779623921.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328154958736_hu16350079241824700791.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328154958736&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;454&#34;
+		data-flex-basis=&#34;1091px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：前面不要出现#，#代表注释，另外这里是下划线，不是中划线&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;22基本用法&#34;&gt;2.2.基本用法
+&lt;/h2&gt;&lt;p&gt;在测试计划上点鼠标右键，选择添加 &amp;gt; 线程（用户） &amp;gt; 线程组：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155007489.png&#34;
+	width=&#34;590&#34;
+	height=&#34;339&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155007489_hu13781260945911902166.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155007489_hu13481236629167899603.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155007489&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;174&#34;
+		data-flex-basis=&#34;417px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在新增的线程组中，填写线程信息：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155013529.png&#34;
+	width=&#34;591&#34;
+	height=&#34;195&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155013529_hu1552605144177862009.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155013529_hu6965782260199346131.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155013529&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;303&#34;
+		data-flex-basis=&#34;727px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;给线程组点鼠标右键，添加http取样器：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155018342.png&#34;
+	width=&#34;585&#34;
+	height=&#34;216&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155018342_hu10751764079906638148.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155018342_hu10847680166426448650.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155018342&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;270&#34;
+		data-flex-basis=&#34;650px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;编写取样器内容：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155024468.png&#34;
+	width=&#34;585&#34;
+	height=&#34;205&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155024468_hu4707557489025595431.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155024468_hu17595291885134424958.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155024468&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;285&#34;
+		data-flex-basis=&#34;684px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;添加监听报告：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155029569.png&#34;
+	width=&#34;619&#34;
+	height=&#34;355&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155029569_hu7996809682242823146.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155029569_hu14740744257449935026.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155029569&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;174&#34;
+		data-flex-basis=&#34;418px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;添加监听结果树：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155037101.png&#34;
+	width=&#34;598&#34;
+	height=&#34;339&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155037101_hu330003449939172070.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155037101_hu8160686719756156665.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155037101&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;176&#34;
+		data-flex-basis=&#34;423px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;汇总报告结果：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155041855.png&#34;
+	width=&#34;609&#34;
+	height=&#34;73&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155041855_hu3901712770095141646.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155041855_hu2441239574637062121.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155041855&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;834&#34;
+		data-flex-basis=&#34;2002px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;结果树：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155050326.png&#34;
+	width=&#34;597&#34;
+	height=&#34;420&#34;
+	srcset=&#34;https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155050326_hu13163988412423936674.png 480w, https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20250328155050326_hu3950899546552167373.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250328155050326&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;341px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
