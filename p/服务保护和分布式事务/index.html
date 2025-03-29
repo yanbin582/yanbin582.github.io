@@ -278,7 +278,22 @@
         <li><a href="#服务熔断">服务熔断：</a></li>
       </ol>
     </li>
-    <li><a href="#分布式事务">分布式事务</a></li>
+    <li><a href="#分布式事务">分布式事务</a>
+      <ol>
+        <li><a href="#seata">Seata</a></li>
+        <li><a href="#部署tc服务">部署TC服务</a></li>
+        <li><a href="#微服务集成seata客户端">微服务集成Seata客户端</a>
+          <ol>
+            <li><a href="#引入依赖">引入依赖</a></li>
+            <li><a href="#改造配置">改造配置</a></li>
+            <li><a href="#添加数据库表">添加数据库表</a></li>
+            <li><a href="#测试">测试</a></li>
+          </ol>
+        </li>
+        <li><a href="#xa模式">XA模式</a></li>
+        <li><a href="#at模式">AT模式</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -680,7 +695,482 @@
 	
 ></p>
 <h2 id="分布式事务">分布式事务
-</h2>
+</h2><p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329160819623.png"
+	width="1565"
+	height="788"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329160819623_hu3759624203944767741.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329160819623_hu1930831928423739096.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329160819623"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="476px"
+	
+></p>
+<h3 id="seata">Seata
+</h3><p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329160900939.png"
+	width="1550"
+	height="773"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329160900939_hu4524220157833657672.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329160900939_hu802996817980045377.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329160900939"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="200"
+		data-flex-basis="481px"
+	
+></p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329161043465.png"
+	width="1411"
+	height="792"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329161043465_hu7173911311730607674.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329161043465_hu15764838992354122602.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329161043465"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="427px"
+	
+></p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329162313817.png"
+	width="1460"
+	height="787"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329162313817_hu10743718913471310844.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329162313817_hu13136985096143913550.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329162313817"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<h3 id="部署tc服务">部署TC服务
+</h3><p>准备数据库表</p>
+<p>Seata支持多种存储模式，但考虑到持久化的需要，我们一般选择基于数据库存储。执行课前资料提供的<code>《seata-tc.sql》</code>，导入数据库表：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034334.png"
+	width="813"
+	height="505"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034334_hu6875180261017632954.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034334_hu14262789981499813501.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="386px"
+	
+></p>
+<p>准备配置文件</p>
+<p>课前资料准备了一个seata目录，其中包含了seata运行时所需要的配置文件：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034331.png"
+	width="743"
+	height="350"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034331_hu17536322886051770237.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034331_hu444037472082662824.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="212"
+		data-flex-basis="509px"
+	
+></p>
+<p>其中包含中文注释，大家可以自行阅读。</p>
+<p>我们将整个seata文件夹拷贝到虚拟机的<code>/root</code>目录：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034332.png"
+	width="713"
+	height="391"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034332_hu17888298138196331704.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034332_hu17566445266342815933.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="182"
+		data-flex-basis="437px"
+	
+></p>
+<p>Docker部署</p>
+<p>需要注意，要确保nacos、mysql都在hm-net网络中。如果某个容器不再hm-net网络，可以参考下面的命令将某容器加入指定网络：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl">docker network connect <span class="o">[</span>网络名<span class="o">]</span> <span class="o">[</span>容器名<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在虚拟机的<code>/root</code>目录执行下面的命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl">docker run --name seata <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-p 8099:8099 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-p 7099:7099 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-e <span class="nv">SEATA_IP</span><span class="o">=</span>192.168.150.101 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v ./seata:/seata-server/resources <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--privileged<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--network hm-net <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-d <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>seataio/seata-server:1.5.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果镜像下载困难，也可以把课前资料提供的镜像上传到虚拟机并加载：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034333.png"
+	width="777"
+	height="325"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034333_hu4700742319901406551.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375034333_hu15794534763504196587.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="239"
+		data-flex-basis="573px"
+	
+></p>
+<h3 id="微服务集成seata客户端">微服务集成Seata客户端
+</h3><p>微服务集成Seata</p>
+<p>参与分布式事务的每一个微服务都需要集成Seata，我们以<code>trade-service</code>为例。</p>
+<h4 id="引入依赖">引入依赖
+</h4><p>为了方便各个微服务集成seata，我们需要把seata配置共享到nacos，因此<code>trade-service</code>模块不仅仅要引入seata依赖，还要引入nacos依赖:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-XML" data-lang="XML"><span class="line"><span class="cl"><span class="c">&lt;!--统一配置管理--&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;groupId&gt;</span>com.alibaba.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!--读取bootstrap文件--&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-bootstrap<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!--seata--&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;groupId&gt;</span>com.alibaba.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-alibaba-seata<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="改造配置">改造配置
+</h4><p>首先在nacos上添加一个共享的seata配置，命名为<code>shared-seata.yaml</code>：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375993839.png"
+	width="1552"
+	height="799"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375993839_hu3364137795444252013.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-17432375993839_hu8141502249769487851.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="466px"
+	
+></p>
+<p>内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">seata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="c"># TC服务注册中心的配置，微服务根据这些信息去注册中心获取tc服务地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">nacos</span><span class="w"> </span><span class="c"># 注册中心类型 nacos</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">nacos</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server-addr</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.150.101</span><span class="p">:</span><span class="m">8848</span><span class="w"> </span><span class="c"># nacos地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w"> </span><span class="c"># namespace，默认为空</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l">DEFAULT_GROUP</span><span class="w"> </span><span class="c"># 分组，默认是DEFAULT_GROUP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">application</span><span class="p">:</span><span class="w"> </span><span class="l">seata-server</span><span class="w"> </span><span class="c"># seata服务名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">nacos</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">nacos</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tx-service-group</span><span class="p">:</span><span class="w"> </span><span class="l">hmall</span><span class="w"> </span><span class="c"># 事务组名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">vgroup-mapping</span><span class="p">:</span><span class="w"> </span><span class="c"># 事务组与tc集群的映射关系</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">hmall</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后，改造<code>trade-service</code>模块，添加<code>bootstrap.yaml</code>：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938410.png"
+	width="918"
+	height="348"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938410_hu15163847896665643603.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938410_hu13506620346662937981.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="263"
+		data-flex-basis="633px"
+	
+></p>
+<p>内容如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">trade-service</span><span class="w"> </span><span class="c"># 服务名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">nacos</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server-addr</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.150.101</span><span class="w"> </span><span class="c"># nacos地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">file-extension</span><span class="p">:</span><span class="w"> </span><span class="l">yaml</span><span class="w"> </span><span class="c"># 文件后缀名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">shared-configs</span><span class="p">:</span><span class="w"> </span><span class="c"># 共享配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">dataId</span><span class="p">:</span><span class="w"> </span><span class="l">shared-jdbc.yaml</span><span class="w"> </span><span class="c"># 共享mybatis配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">dataId</span><span class="p">:</span><span class="w"> </span><span class="l">shared-log.yaml</span><span class="w"> </span><span class="c"># 共享日志配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">dataId</span><span class="p">:</span><span class="w"> </span><span class="l">shared-swagger.yaml</span><span class="w"> </span><span class="c"># 共享日志配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">dataId</span><span class="p">:</span><span class="w"> </span><span class="l">shared-seata.yaml</span><span class="w"> </span><span class="c"># 共享seata配置</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到这里加载了共享的seata配置。</p>
+<p>然后改造application.yaml文件，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8085</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">feign</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">okhttp</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># 开启OKHttp连接池支持</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sentinel</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># 开启Feign对Sentinel的整合</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">hm</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">swagger</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">交易服务接口文档</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">package</span><span class="p">:</span><span class="w"> </span><span class="l">com.hmall.trade.controller</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l">hm-trade</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>参考上述办法分别改造<code>hm-cart</code>和<code>hm-item</code>两个微服务模块。</p>
+<h4 id="添加数据库表">添加数据库表
+</h4><p>seata的客户端在解决分布式事务的时候需要记录一些中间数据，保存在数据库中。因此我们要先准备一个这样的表。</p>
+<p>将课前资料的seata-at.sql分别文件导入hm-trade、hm-cart、hm-item三个数据库中：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938411.png"
+	width="750"
+	height="279"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938411_hu2065770332509235580.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938411_hu10057665192968345462.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="268"
+		data-flex-basis="645px"
+	
+></p>
+<p>结果：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938412.png"
+	width="810"
+	height="437"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938412_hu4871736406488747320.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938412_hu12902994226177124408.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="444px"
+	
+></p>
+<p>OK，至此为止，微服务整合的工作就完成了。可以参考上述方式对<code>hm-item</code>和<code>hm-cart</code>模块完成整合改造。</p>
+<h4 id="测试">测试
+</h4><p>接下来就是测试的分布式事务的时候了。</p>
+<p>我们找到<code>trade-service</code>模块下的<code>com.hmall.trade.service.impl.OrderServiceImpl</code>类中的<code>createOrder</code>方法，也就是下单业务方法。</p>
+<p>将其上的<code>@Transactional</code>注解改为Seata提供的<code>@GlobalTransactional</code>：</p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938413.png"
+	width="1459"
+	height="867"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938413_hu293411698248708912.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/-174323759938413_hu3656286298579025836.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="403px"
+	
+></p>
+<p><code>@GlobalTransactional</code>注解就是在标记事务的起点，将来TM就会基于这个方法判断全局事务范围，初始化全局事务。</p>
+<p>我们重启<code>trade-service</code>、<code>item-service</code>、<code>cart-service</code>三个服务。再次测试，发现分布式事务的问题解决了！</p>
+<p>那么，Seata是如何解决分布式事务的呢？</p>
+<h3 id="xa模式">XA模式
+</h3><p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170137582.png"
+	width="1595"
+	height="793"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170137582_hu4448348999345959094.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170137582_hu1315165363304536274.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329170137582"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="201"
+		data-flex-basis="482px"
+	
+></p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170203729.png"
+	width="801"
+	height="414"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170203729_hu18139043748125111992.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170203729_hu18430323629101370935.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329170203729"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="464px"
+	
+></p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170234397.png"
+	width="1412"
+	height="777"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170234397_hu8129381218655948950.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329170234397_hu11609488803901418897.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329170234397"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="181"
+		data-flex-basis="436px"
+	
+></p>
+<h3 id="at模式">AT模式
+</h3><p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171256323.png"
+	width="1590"
+	height="786"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171256323_hu3814756643100333046.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171256323_hu3690912445819208628.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329171256323"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="202"
+		data-flex-basis="485px"
+	
+></p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171424323.png"
+	width="894"
+	height="577"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171424323_hu739471704765820563.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171424323_hu18134016783169640356.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329171424323"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="371px"
+	
+></p>
+<p><img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171613672.png"
+	width="1456"
+	height="811"
+	srcset="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171613672_hu9400547546221452084.png 480w, /p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image-20250329171613672_hu15101368929749570172.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329171613672"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="430px"
+	
+></p>
+
 </section>
 
 
