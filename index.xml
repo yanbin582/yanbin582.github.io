@@ -7,7 +7,901 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>严彬-yabi</copyright>
-        <lastBuildDate>Fri, 28 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yanbin582.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yanbin582.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>AcWing 5524. 多数意见 </title>
+        <link>https://yanbin582.github.io/p/acwing-5524.-%E5%A4%9A%E6%95%B0%E6%84%8F%E8%A7%81/</link>
+        <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yanbin582.github.io/p/acwing-5524.-%E5%A4%9A%E6%95%B0%E6%84%8F%E8%A7%81/</guid>
+        <description>&lt;img src="https://yanbin582.github.io/image.png" alt="Featured image of post AcWing 5524. 多数意见 " /&gt;&lt;h1 id=&#34;题目&#34;&gt;题目
+&lt;/h1&gt;&lt;p&gt;农夫约翰有一项重要的任务——弄清楚要为他的奶牛们购买什么类型的干草。&lt;/p&gt;
+&lt;p&gt;农夫约翰的 NN 头奶牛编号为 11 到 NN，每头奶牛喜欢恰好一种类型的干草 hihi。&lt;/p&gt;
+&lt;p&gt;他希望他的所有奶牛都喜欢同一种干草。&lt;/p&gt;
+&lt;p&gt;为了实现这一目标，农夫约翰可以主持焦点小组访谈。&lt;/p&gt;
+&lt;p&gt;每一次焦点小组访谈，约翰都可以自由选择任意多个&lt;strong&gt;连续编号&lt;/strong&gt;的奶牛构成访谈小组，共同参加访谈。&lt;/p&gt;
+&lt;p&gt;如果有一种干草是小组中超过一半的奶牛喜欢的，则此次焦点小组访谈结束后，组内所有奶牛最终都会喜欢这种干草。&lt;/p&gt;
+&lt;p&gt;如果不存在这样的干草，那么奶牛们就不会改变她们喜欢的干草类型。&lt;/p&gt;
+&lt;p&gt;例如，在由 1616 头奶牛组成的焦点小组访谈中，需要有其中 99 头或更多的奶牛具有相同的干草喜好，才能使其余奶牛改变其喜好以与之一致。&lt;/p&gt;
+&lt;p&gt;农夫约翰想知道哪些类型的干草有可能变为同时受到所有奶牛的喜爱。&lt;/p&gt;
+&lt;p&gt;他一次只能主持一个焦点小组访谈，但为了使所有奶牛都喜欢同一类型的干草，他可以根据需要任意多次地主持焦点小组访谈。&lt;/p&gt;
+&lt;p&gt;输入格式&lt;/p&gt;
+&lt;p&gt;输入的第一行包含一个整数 TT，为独立的测试用例的数量。&lt;/p&gt;
+&lt;p&gt;每一个测试用例的第一行包含 NN。&lt;/p&gt;
+&lt;p&gt;第二行包含 NN 个整数，为奶牛们喜爱的干草类型 hihi。&lt;/p&gt;
+&lt;p&gt;输出格式&lt;/p&gt;
+&lt;p&gt;输出 TT 行，对于每个测试用例输出一行。&lt;/p&gt;
+&lt;p&gt;如果可能使所有奶牛同时喜欢同一种干草，则以升序输出所有可能的此类干草的类型，否则输出 &lt;code&gt;-1&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;在同一行内输出一列整数时，相邻的数用空格分隔，并确保行末没有多余空格。&lt;/p&gt;
+&lt;p&gt;数据范围&lt;/p&gt;
+&lt;p&gt;1≤T≤101≤T≤10,
+2≤N≤1052≤N≤105,
+1≤hi≤N1≤hi≤N,
+输入保证同一测试点内所有测试用例的 NN 之和不超过 2⋅1052⋅105。&lt;/p&gt;
+&lt;p&gt;输入样例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1 2 2 2 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1 2 3 1 2 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1 1 1 2 2 2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3 2 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2 1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出样例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1 2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;样例解释&lt;/p&gt;
+&lt;p&gt;在输入样例中，有 55 个测试用例。&lt;/p&gt;
+&lt;p&gt;在第一个测试用例中，仅可能使所有奶牛喜欢种类 22。约翰可以通过主持一次所有奶牛的焦点小组访谈达到这一目的。&lt;/p&gt;
+&lt;p&gt;在第二个测试用例中，可以证明没有奶牛会改变她们喜爱的干草种类。&lt;/p&gt;
+&lt;p&gt;在第三个测试用例中，有可能使所有奶牛喜欢种类 11，可以通过主持三次焦点小组访谈达到这一目的——首先使奶牛 11 到 44 进行一次焦点小组访谈，随后使奶牛 11 到 55 进行一次焦点小组访谈，随后使奶牛 11 到 66 进行一次焦点小组访谈。以类似的逻辑，依次操作奶牛 33 到 66，随后是奶牛 22 到 66，随后是奶牛 11 到 66，我们可以使所有奶牛喜欢种类 22。&lt;/p&gt;
+&lt;p&gt;在第四个测试用例中，有可能使所有奶牛喜欢种类 33，可以通过主持一次所有奶牛的焦点小组访谈达到这一目的。&lt;/p&gt;
+&lt;p&gt;在第五个测试用例中，可以证明没有奶牛会改变她们喜爱的干草种类。&lt;/p&gt;
+&lt;h1 id=&#34;博主解题思路&#34;&gt;博主解题思路：
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;问题分析&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;目标是让所有奶牛最终喜欢同一种干草。&lt;/li&gt;
+&lt;li&gt;规则是可以通过多次“连续子数组”的访谈，使一个干草类型成为某个区间的“多数派”后，影响整个区间的奶牛偏好。&lt;/li&gt;
+&lt;li&gt;需要找出哪些干草类型有可能最终成为所有奶牛的唯一选择。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;特殊情况处理&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;只有两头奶牛时 (&lt;code&gt;N = 2&lt;/code&gt;)&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;如果它们喜好相同，直接输出该干草类型；否则，无法统一，输出 &lt;code&gt;-1&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;所有奶牛已经喜欢相同的干草&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;直接输出该干草类型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;寻找可能的最终干草类型&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过遍历数组，寻找哪些干草类型在某些区间内可能成为“多数派”。&lt;/li&gt;
+&lt;li&gt;采用滑动窗口（&lt;code&gt;l&lt;/code&gt; 和 &lt;code&gt;r&lt;/code&gt; 两个指针），动态检查每个窗口内的情况：
+&lt;ul&gt;
+&lt;li&gt;如果某个干草类型在 &lt;code&gt;l&lt;/code&gt; 位置和 &lt;code&gt;l+1&lt;/code&gt; 或 &lt;code&gt;r&lt;/code&gt; 位置相同，记录它为可能的候选者。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;记录这些可能的干草类型，并用 &lt;code&gt;TreeSet&lt;/code&gt; 进行去重和排序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;输出结果&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果 &lt;code&gt;TreeSet&lt;/code&gt; 为空，说明没有可能的最终干草，输出 &lt;code&gt;-1&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;否则，按照&lt;strong&gt;升序&lt;/strong&gt;输出所有可能的最终干草类型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;答案&#34;&gt;答案：
+&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;java.io.*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;java.util.ArrayList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;java.util.LinkedHashSet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;java.util.List&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;java.util.TreeSet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Main&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;200010&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;throws&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IOException&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BufferedReader&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BufferedReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;InputStreamReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;parseInt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;readLine&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;trim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;parseInt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;readLine&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;trim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;part&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;readLine&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;trim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;parseInt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;part&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]==&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;continue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TreeSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TreeSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]==&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]||&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]==&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]==&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;isEmpty&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;continue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>MQ基础</title>
+        <link>https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/</guid>
+        <description>&lt;img src="https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image.png" alt="Featured image of post MQ基础" /&gt;&lt;h1 id=&#34;rabbitmq&#34;&gt;RabbitMQ
+&lt;/h1&gt;&lt;h2 id=&#34;什么是mq&#34;&gt;什么是MQ？
+&lt;/h2&gt;&lt;p&gt;微服务一旦拆分，必然涉及到服务之间的相互调用，目前我们服务之间调用采用的都是基于OpenFeign的调用。这种调用中，调用者发起请求后需要&lt;strong&gt;等待&lt;/strong&gt;服务提供者执行业务返回结果后，才能继续执行后面的业务。也就是说调用者在调用过程中处于阻塞状态，因此我们称这种调用方式为&lt;strong&gt;同步调用&lt;/strong&gt;，也可以叫&lt;strong&gt;同步通****讯&lt;/strong&gt;。但在很多场景下，我们可能需要采用&lt;strong&gt;异步通讯&lt;/strong&gt;的方式，为什么呢？&lt;/p&gt;
+&lt;p&gt;解读：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同步通讯：就如同打视频电话，双方的交互都是实时的。因此同一时刻你只能跟一个人打视频电话。&lt;/li&gt;
+&lt;li&gt;异步通讯：就如同发微信聊天，双方的交互不是实时的，你不需要立刻给对方回应。因此你可以多线操作，同时跟多人聊天。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两种方式各有优劣，打电话可以立即得到响应，但是你却不能跟多个人同时通话。发微信可以同时与多个人收发微信，但是往往响应会有延迟。&lt;/p&gt;
+&lt;p&gt;所以，如果我们的业务需要实时得到服务提供方的响应，则应该选择同步通讯（同步调用）。而如果我们追求更高的效率，并且不需要实时响应，则应该选择异步通讯（异步调用）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329172734739.png&#34;
+	width=&#34;1558&#34;
+	height=&#34;776&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329172734739_hu17008418262193256640.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329172734739_hu1812115693297789940.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329172734739&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;200&#34;
+		data-flex-basis=&#34;481px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329175424219.png&#34;
+	width=&#34;1507&#34;
+	height=&#34;787&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329175424219_hu9862546043477401084.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329175424219_hu10382442142941190223.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329175424219&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;191&#34;
+		data-flex-basis=&#34;459px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;同步调用和异步调用的区别和应用场景:&lt;/p&gt;
+&lt;h3 id=&#34;同步调用&#34;&gt;同步调用：
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190141591.png&#34;
+	width=&#34;1588&#34;
+	height=&#34;788&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190141591_hu17111950169294109629.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190141591_hu10863860386414429553.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329190141591&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;483px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190239306.png&#34;
+	width=&#34;867&#34;
+	height=&#34;499&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190239306_hu3898715353509557074.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190239306_hu11478970304297212067.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329190239306&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;173&#34;
+		data-flex-basis=&#34;416px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;异步调用&#34;&gt;异步调用：
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190532742.png&#34;
+	width=&#34;1542&#34;
+	height=&#34;720&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190532742_hu17449419214694055351.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329190532742_hu11570570896291135908.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329190532742&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;214&#34;
+		data-flex-basis=&#34;514px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329194854575.png&#34;
+	width=&#34;1565&#34;
+	height=&#34;786&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329194854575_hu13997393015645307352.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329194854575_hu15502022603977122177.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329194854575&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;199&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329194924817.png&#34;
+	width=&#34;704&#34;
+	height=&#34;653&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329194924817_hu17036773054588331735.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329194924817_hu1798684085127828838.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329194924817&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;107&#34;
+		data-flex-basis=&#34;258px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;mq技术选型&#34;&gt;MQ技术选型：
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329200102356.png&#34;
+	width=&#34;1607&#34;
+	height=&#34;771&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329200102356_hu3763254191084168402.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329200102356_hu2869751836722322919.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329200102356&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;500px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;MQ基本介绍&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329201108974.png&#34;
+	width=&#34;1587&#34;
+	height=&#34;802&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329201108974_hu6135235123200385865.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329201108974_hu1577231719991751175.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329201108974&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;197&#34;
+		data-flex-basis=&#34;474px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;收发消息&#34;&gt;收发消息
+&lt;/h2&gt;&lt;h3 id=&#34;交换机&#34;&gt;交换机
+&lt;/h3&gt;&lt;p&gt;我们打开Exchanges选项卡，可以看到已经存在很多交换机：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208012.png&#34;
+	width=&#34;1264&#34;
+	height=&#34;750&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208012_hu1575866374575919438.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208012_hu5984088903414484251.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;168&#34;
+		data-flex-basis=&#34;404px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我们点击任意交换机，即可进入交换机详情页面。仍然会利用控制台中的publish message 发送一条消息：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820791.png&#34;
+	width=&#34;947&#34;
+	height=&#34;604&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820791_hu4211849581054738421.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820791_hu4037108282580582814.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;376px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820792.png&#34;
+	width=&#34;1092&#34;
+	height=&#34;763&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820792_hu15670038542606732063.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820792_hu6850079180354799804.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;343px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这里是由控制台模拟了生产者发送的消息。由于没有消费者存在，最终消息丢失了，这样说明交换机没有存储消息的能力。&lt;/p&gt;
+&lt;h3 id=&#34;队列&#34;&gt;队列
+&lt;/h3&gt;&lt;p&gt;我们打开&lt;code&gt;Queues&lt;/code&gt;选项卡，新建一个队列：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820803.png&#34;
+	width=&#34;1157&#34;
+	height=&#34;517&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820803_hu10592266941339089980.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820803_hu6141731185345259803.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;223&#34;
+		data-flex-basis=&#34;537px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;命名为&lt;code&gt;hello.queue1&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820804.png&#34;
+	width=&#34;1163&#34;
+	height=&#34;679&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820804_hu5590064280625466187.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820804_hu3818400371259742858.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;411px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;再以相同的方式，创建一个队列，密码为&lt;code&gt;hello.queue2&lt;/code&gt;，最终队列列表如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820805.png&#34;
+	width=&#34;1074&#34;
+	height=&#34;445&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820805_hu13017222290830310051.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820805_hu2954394559935658959.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;241&#34;
+		data-flex-basis=&#34;579px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此时，我们再次向&lt;code&gt;amq.fanout&lt;/code&gt;交换机发送一条消息。会发现消息依然没有到达队列！！&lt;/p&gt;
+&lt;p&gt;怎么回事呢？&lt;/p&gt;
+&lt;p&gt;发送到交换机的消息，只会路由到与其绑定的队列，因此仅仅创建队列是不够的，我们还需要将其与交换机绑定。&lt;/p&gt;
+&lt;h3 id=&#34;绑定关系&#34;&gt;绑定关系
+&lt;/h3&gt;&lt;p&gt;点击&lt;code&gt;Exchanges&lt;/code&gt;选项卡，点击&lt;code&gt;amq.fanout&lt;/code&gt;交换机，进入交换机详情页，然后点击&lt;code&gt;Bindings&lt;/code&gt;菜单，在表单中填写要绑定的队列名称：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820806.png&#34;
+	width=&#34;1022&#34;
+	height=&#34;596&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820806_hu5073927743009907218.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820806_hu8622641730871158673.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;411px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;相同的方式，将hello.queue2也绑定到改交换机。&lt;/p&gt;
+&lt;p&gt;最终，绑定结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820807.png&#34;
+	width=&#34;978&#34;
+	height=&#34;477&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820807_hu13319730683268461540.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820807_hu11726259457600936365.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;205&#34;
+		data-flex-basis=&#34;492px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;发送消息&#34;&gt;发送消息
+&lt;/h3&gt;&lt;p&gt;再次回到exchange页面，找到刚刚绑定的&lt;code&gt;amq.fanout&lt;/code&gt;，点击进入详情页，再次发送一条消息：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820808.png&#34;
+	width=&#34;1092&#34;
+	height=&#34;763&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820808_hu15670038542606732063.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820808_hu6850079180354799804.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;343px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;回到&lt;code&gt;Queues&lt;/code&gt;页面，可以发现&lt;code&gt;hello.queue&lt;/code&gt;中已经有一条消息了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820809.png&#34;
+	width=&#34;1051&#34;
+	height=&#34;395&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820809_hu16788590190919236626.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-17432504820809_hu4942800076501842067.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;266&#34;
+		data-flex-basis=&#34;638px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击队列名称，进入详情页，查看队列详情，这次我们点击get message：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208010.png&#34;
+	width=&#34;974&#34;
+	height=&#34;586&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208010_hu15654913287918059467.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208010_hu1986678225725098642.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;166&#34;
+		data-flex-basis=&#34;398px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以看到消息到达队列了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208011.png&#34;
+	width=&#34;762&#34;
+	height=&#34;578&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208011_hu14746741692419077829.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325048208011_hu16957734733456193881.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;316px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这个时候如果有消费者监听了MQ的&lt;code&gt;hello.queue1&lt;/code&gt;或&lt;code&gt;hello.queue2&lt;/code&gt;队列，自然就能接收到消息了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329202305257.png&#34;
+	width=&#34;916&#34;
+	height=&#34;459&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329202305257_hu2219660582404196340.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329202305257_hu1545489312671821949.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329202305257&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;199&#34;
+		data-flex-basis=&#34;478px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;数据隔离&#34;&gt;数据隔离
+&lt;/h2&gt;&lt;h3 id=&#34;用户管理&#34;&gt;用户管理
+&lt;/h3&gt;&lt;p&gt;点击&lt;code&gt;Admin&lt;/code&gt;选项卡，首先会看到RabbitMQ控制台的用户管理界面：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717425.png&#34;
+	width=&#34;1580&#34;
+	height=&#34;558&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717425_hu2381755380232464244.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717425_hu1638137278810542783.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;283&#34;
+		data-flex-basis=&#34;679px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这里的用户都是RabbitMQ的管理或运维人员。目前只有安装RabbitMQ时添加的&lt;code&gt;itheima&lt;/code&gt;这个用户。仔细观察用户表格中的字段，如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Name&lt;/code&gt;：&lt;code&gt;itheima&lt;/code&gt;，也就是用户名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Tags&lt;/code&gt;：&lt;code&gt;administrator&lt;/code&gt;，说明&lt;code&gt;itheima&lt;/code&gt;用户是超级管理员，拥有所有权限&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Can access virtual host&lt;/code&gt;： &lt;code&gt;/&lt;/code&gt;，可以访问的&lt;code&gt;virtual host&lt;/code&gt;，这里的&lt;code&gt;/&lt;/code&gt;是默认的&lt;code&gt;virtual host&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对于小型企业而言，出于成本考虑，我们通常只会搭建一套MQ集群，公司内的多个不同项目同时使用。这个时候为了避免互相干扰， 我们会利用&lt;code&gt;virtual host&lt;/code&gt;的隔离特性，将不同项目隔离。一般会做两件事情：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;给每个项目创建独立的运维账号，将管理权限分离。&lt;/li&gt;
+&lt;li&gt;给每个项目创建不同的&lt;code&gt;virtual host&lt;/code&gt;，将每个项目的数据隔离。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如，我们给黑马商城创建一个新的用户，命名为&lt;code&gt;hmall&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717426.png&#34;
+	width=&#34;1569&#34;
+	height=&#34;755&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717426_hu4180748429497344088.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717426_hu4115716445191907293.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;207&#34;
+		data-flex-basis=&#34;498px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;你会发现此时hmall用户没有任何&lt;code&gt;virtual host&lt;/code&gt;的访问权限：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717527.png&#34;
+	width=&#34;927&#34;
+	height=&#34;437&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717527_hu10415112619648439739.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717527_hu317770626178317220.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;212&#34;
+		data-flex-basis=&#34;509px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;别急，接下来我们就来授权。&lt;/p&gt;
+&lt;h3 id=&#34;virtual-host&#34;&gt;virtual host
+&lt;/h3&gt;&lt;p&gt;我们先退出登录：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717528.png&#34;
+	width=&#34;1571&#34;
+	height=&#34;463&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717528_hu16886004155650288810.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717528_hu3180196074336965219.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;339&#34;
+		data-flex-basis=&#34;814px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;切换到刚刚创建的hmall用户登录，然后点击&lt;code&gt;Virtual Hosts&lt;/code&gt;菜单，进入&lt;code&gt;virtual host&lt;/code&gt;管理页：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717529.png&#34;
+	width=&#34;1565&#34;
+	height=&#34;507&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717529_hu2642304458099785075.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717529_hu17454125237618155702.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;308&#34;
+		data-flex-basis=&#34;740px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以看到目前只有一个默认的&lt;code&gt;virtual host&lt;/code&gt;，名字为 &lt;code&gt;/&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;我们可以给黑马商城项目创建一个单独的&lt;code&gt;virtual host&lt;/code&gt;，而不是使用默认的&lt;code&gt;/&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717530.png&#34;
+	width=&#34;1555&#34;
+	height=&#34;685&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717530_hu3060083524513858646.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717530_hu1335890182914955890.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;227&#34;
+		data-flex-basis=&#34;544px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;创建完成后如图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717531.png&#34;
+	width=&#34;990&#34;
+	height=&#34;287&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717531_hu14406062656093119849.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717531_hu4737037534691442194.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;344&#34;
+		data-flex-basis=&#34;827px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;由于我们是登录&lt;code&gt;hmall&lt;/code&gt;账户后创建的&lt;code&gt;virtual host&lt;/code&gt;，因此回到&lt;code&gt;users&lt;/code&gt;菜单，你会发现当前用户已经具备了对&lt;code&gt;/hmall&lt;/code&gt;这个&lt;code&gt;virtual host&lt;/code&gt;的访问权限了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717532.png&#34;
+	width=&#34;890&#34;
+	height=&#34;432&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717532_hu12548930007698173911.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717532_hu18437138817427122421.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;494px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此时，点击页面右上角的&lt;code&gt;virtual host&lt;/code&gt;下拉菜单，切换&lt;code&gt;virtual host&lt;/code&gt;为 &lt;code&gt;/hmall&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717533.png&#34;
+	width=&#34;1448&#34;
+	height=&#34;277&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717533_hu6277353424186064687.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717533_hu6866510571255495274.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;522&#34;
+		data-flex-basis=&#34;1254px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后再次查看queues选项卡，会发现之前的队列已经看不到了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717534.png&#34;
+	width=&#34;1443&#34;
+	height=&#34;534&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717534_hu16264352394209975704.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/-174325207717534_hu7243287939753567582.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;270&#34;
+		data-flex-basis=&#34;648px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这就是基于&lt;code&gt;virtual host &lt;/code&gt;的隔离效果。&lt;/p&gt;
+&lt;h1 id=&#34;springamqp&#34;&gt;SpringAMQP
+&lt;/h1&gt;&lt;h2 id=&#34;快速入门&#34;&gt;快速入门
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329204428105.png&#34;
+	width=&#34;1667&#34;
+	height=&#34;679&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329204428105_hu6976685752549187811.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329204428105_hu9759771255751438481.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329204428105&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;245&#34;
+		data-flex-basis=&#34;589px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329204956187.png&#34;
+	width=&#34;1290&#34;
+	height=&#34;532&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329204956187_hu14282937853473641581.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329204956187_hu1023918813966171788.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329204956187&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;242&#34;
+		data-flex-basis=&#34;581px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205027331.png&#34;
+	width=&#34;1411&#34;
+	height=&#34;591&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205027331_hu7222237480640178220.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205027331_hu10577368724657143832.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329205027331&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;238&#34;
+		data-flex-basis=&#34;572px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205045344.png&#34;
+	width=&#34;1544&#34;
+	height=&#34;675&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205045344_hu12726568561165773841.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205045344_hu4457444755073899198.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329205045344&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;228&#34;
+		data-flex-basis=&#34;548px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205205931.png&#34;
+	width=&#34;1436&#34;
+	height=&#34;732&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205205931_hu17302712754165693687.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329205205931_hu10376532292506687490.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329205205931&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;196&#34;
+		data-flex-basis=&#34;470px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211343418.png&#34;
+	width=&#34;1578&#34;
+	height=&#34;691&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211343418_hu1573030282341966239.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211343418_hu12046202085533541889.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329211343418&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;228&#34;
+		data-flex-basis=&#34;548px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;workqueues模型&#34;&gt;WorkQueues模型
+&lt;/h2&gt;&lt;p&gt;什么是WorkQueues模型&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211527953.png&#34;
+	width=&#34;1533&#34;
+	height=&#34;653&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211527953_hu11170682750777522586.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211527953_hu1010778930981306919.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329211527953&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;234&#34;
+		data-flex-basis=&#34;563px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211603422.png&#34;
+	width=&#34;1235&#34;
+	height=&#34;399&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211603422_hu18442693448151856201.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329211603422_hu15980624378195347968.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329211603422&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;309&#34;
+		data-flex-basis=&#34;742px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果两个消费者处理队列消息的时间不同，那么就会造成阻塞，处理速度快的已经处理完了，而处理速度慢的还在处理，造成资源的浪费以及运行缓慢，所以有了消费者消息推送机制&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329215154463.png&#34;
+	width=&#34;1544&#34;
+	height=&#34;636&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329215154463_hu17599669405915534409.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329215154463_hu17011759565314401942.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329215154463&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;242&#34;
+		data-flex-basis=&#34;582px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329215534509.png&#34;
+	width=&#34;961&#34;
+	height=&#34;463&#34;
+	srcset=&#34;https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329215534509_hu18069053079466258447.png 480w, https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image-20250329215534509_hu12088173970672233513.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250329215534509&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;207&#34;
+		data-flex-basis=&#34;498px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Jmeter快速入门</title>
         <link>https://yanbin582.github.io/p/jmeter%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
         <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>

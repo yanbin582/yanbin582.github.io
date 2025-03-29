@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Java后端学习MQ基础">
+<title>MQ基础</title>
+
+<link rel='canonical' href='https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="MQ基础">
+<meta property='og:description' content="Java后端学习MQ基础">
+<meta property='og:url' content='https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/'>
+<meta property='og:site_name' content='严彬-yabi'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Java后端' /><meta property='article:published_time' content='2025-03-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-29T00:00:00&#43;00:00'/><meta property='og:image' content='https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image.png' />
+<meta name="twitter:title" content="MQ基础">
+<meta name="twitter:description" content="Java后端学习MQ基础"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yanbin582.github.io/p/mq%E5%9F%BA%E7%A1%80/image.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu12865272696180347112.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🤪</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">严彬-yabi</a></h1>
+            <h2 class="site-description">记录学习与生活</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://blog.csdn.net/2301_80021118?spm=1000.2115.3001.5343'
+                        target="_blank"
+                        title="CSDN"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>C</title><path d="M16.5921 9.1962s-.354-3.298-3.627-3.39c-3.2741-.09-4.9552 2.474-4.9552 6.14 0 3.6651 1.858 6.5972 5.0451 6.5972 3.184 0 3.5381-3.665 3.5381-3.665l6.1041.365s.36 3.31-2.196 5.836c-2.552 2.5241-5.6901 2.9371-7.8762 2.9201-2.19-.017-5.2261.034-8.1602-2.97-2.938-3.0101-3.436-5.9302-3.436-8.8002 0-2.8701.556-6.6702 4.047-9.5502C7.444.72 9.849 0 12.254 0c10.0422 0 10.7172 9.2602 10.7172 9.2602z"/></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/yanbin582'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#什么是mq">什么是MQ？</a>
+      <ol>
+        <li><a href="#同步调用">同步调用：</a></li>
+        <li><a href="#异步调用">异步调用：</a></li>
+      </ol>
+    </li>
+    <li><a href="#mq技术选型">MQ技术选型：</a></li>
+    <li><a href="#收发消息">收发消息</a>
+      <ol>
+        <li><a href="#交换机">交换机</a></li>
+        <li><a href="#队列">队列</a></li>
+        <li><a href="#绑定关系">绑定关系</a></li>
+        <li><a href="#发送消息">发送消息</a></li>
+      </ol>
+    </li>
+    <li><a href="#数据隔离">数据隔离</a>
+      <ol>
+        <li><a href="#用户管理">用户管理</a></li>
+        <li><a href="#virtual-host">virtual host</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#快速入门">快速入门</a></li>
+    <li><a href="#workqueues模型">WorkQueues模型</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/mq%E5%9F%BA%E7%A1%80/">
+                <img src="/p/mq%E5%9F%BA%E7%A1%80/image_hu11588352611934679462.png"
+                        srcset="/p/mq%E5%9F%BA%E7%A1%80/image_hu11588352611934679462.png 800w, /p/mq%E5%9F%BA%E7%A1%80/image_hu17090027243441591744.png 1600w"
+                        width="800" 
+                        height="351" 
+                        loading="lazy"
+                        alt="Featured image of post MQ基础" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java%E5%90%8E%E7%AB%AF/" >
+                Java后端
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/mq%E5%9F%BA%E7%A1%80/">MQ基础</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Java后端学习MQ基础
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-03-29</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="rabbitmq">RabbitMQ
+</h1><h2 id="什么是mq">什么是MQ？
+</h2><p>微服务一旦拆分，必然涉及到服务之间的相互调用，目前我们服务之间调用采用的都是基于OpenFeign的调用。这种调用中，调用者发起请求后需要<strong>等待</strong>服务提供者执行业务返回结果后，才能继续执行后面的业务。也就是说调用者在调用过程中处于阻塞状态，因此我们称这种调用方式为<strong>同步调用</strong>，也可以叫<strong>同步通****讯</strong>。但在很多场景下，我们可能需要采用<strong>异步通讯</strong>的方式，为什么呢？</p>
+<p>解读：</p>
+<ul>
+<li>同步通讯：就如同打视频电话，双方的交互都是实时的。因此同一时刻你只能跟一个人打视频电话。</li>
+<li>异步通讯：就如同发微信聊天，双方的交互不是实时的，你不需要立刻给对方回应。因此你可以多线操作，同时跟多人聊天。</li>
+</ul>
+<p>两种方式各有优劣，打电话可以立即得到响应，但是你却不能跟多个人同时通话。发微信可以同时与多个人收发微信，但是往往响应会有延迟。</p>
+<p>所以，如果我们的业务需要实时得到服务提供方的响应，则应该选择同步通讯（同步调用）。而如果我们追求更高的效率，并且不需要实时响应，则应该选择异步通讯（异步调用）。</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329172734739.png"
+	width="1558"
+	height="776"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329172734739_hu17008418262193256640.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329172734739_hu1812115693297789940.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329172734739"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="200"
+		data-flex-basis="481px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329175424219.png"
+	width="1507"
+	height="787"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329175424219_hu9862546043477401084.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329175424219_hu10382442142941190223.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329175424219"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="191"
+		data-flex-basis="459px"
+	
+></p>
+<p>同步调用和异步调用的区别和应用场景:</p>
+<h3 id="同步调用">同步调用：
+</h3><p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329190141591.png"
+	width="1588"
+	height="788"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329190141591_hu17111950169294109629.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329190141591_hu10863860386414429553.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329190141591"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="201"
+		data-flex-basis="483px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329190239306.png"
+	width="867"
+	height="499"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329190239306_hu3898715353509557074.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329190239306_hu11478970304297212067.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329190239306"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="416px"
+	
+></p>
+<h3 id="异步调用">异步调用：
+</h3><p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329190532742.png"
+	width="1542"
+	height="720"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329190532742_hu17449419214694055351.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329190532742_hu11570570896291135908.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329190532742"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="214"
+		data-flex-basis="514px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329194854575.png"
+	width="1565"
+	height="786"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329194854575_hu13997393015645307352.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329194854575_hu15502022603977122177.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329194854575"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="199"
+		data-flex-basis="477px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329194924817.png"
+	width="704"
+	height="653"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329194924817_hu17036773054588331735.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329194924817_hu1798684085127828838.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329194924817"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="107"
+		data-flex-basis="258px"
+	
+></p>
+<h2 id="mq技术选型">MQ技术选型：
+</h2><p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329200102356.png"
+	width="1607"
+	height="771"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329200102356_hu3763254191084168402.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329200102356_hu2869751836722322919.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329200102356"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="500px"
+	
+></p>
+<p>MQ基本介绍</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329201108974.png"
+	width="1587"
+	height="802"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329201108974_hu6135235123200385865.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329201108974_hu1577231719991751175.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329201108974"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="197"
+		data-flex-basis="474px"
+	
+></p>
+<h2 id="收发消息">收发消息
+</h2><h3 id="交换机">交换机
+</h3><p>我们打开Exchanges选项卡，可以看到已经存在很多交换机：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325048208012.png"
+	width="1264"
+	height="750"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325048208012_hu1575866374575919438.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325048208012_hu5984088903414484251.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="404px"
+	
+></p>
+<p>我们点击任意交换机，即可进入交换机详情页面。仍然会利用控制台中的publish message 发送一条消息：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820791.png"
+	width="947"
+	height="604"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820791_hu4211849581054738421.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820791_hu4037108282580582814.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="376px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820792.png"
+	width="1092"
+	height="763"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820792_hu15670038542606732063.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820792_hu6850079180354799804.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="143"
+		data-flex-basis="343px"
+	
+></p>
+<p>这里是由控制台模拟了生产者发送的消息。由于没有消费者存在，最终消息丢失了，这样说明交换机没有存储消息的能力。</p>
+<h3 id="队列">队列
+</h3><p>我们打开<code>Queues</code>选项卡，新建一个队列：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820803.png"
+	width="1157"
+	height="517"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820803_hu10592266941339089980.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820803_hu6141731185345259803.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="223"
+		data-flex-basis="537px"
+	
+></p>
+<p>命名为<code>hello.queue1</code>：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820804.png"
+	width="1163"
+	height="679"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820804_hu5590064280625466187.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820804_hu3818400371259742858.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="411px"
+	
+></p>
+<p>再以相同的方式，创建一个队列，密码为<code>hello.queue2</code>，最终队列列表如下：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820805.png"
+	width="1074"
+	height="445"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820805_hu13017222290830310051.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820805_hu2954394559935658959.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="241"
+		data-flex-basis="579px"
+	
+></p>
+<p>此时，我们再次向<code>amq.fanout</code>交换机发送一条消息。会发现消息依然没有到达队列！！</p>
+<p>怎么回事呢？</p>
+<p>发送到交换机的消息，只会路由到与其绑定的队列，因此仅仅创建队列是不够的，我们还需要将其与交换机绑定。</p>
+<h3 id="绑定关系">绑定关系
+</h3><p>点击<code>Exchanges</code>选项卡，点击<code>amq.fanout</code>交换机，进入交换机详情页，然后点击<code>Bindings</code>菜单，在表单中填写要绑定的队列名称：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820806.png"
+	width="1022"
+	height="596"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820806_hu5073927743009907218.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820806_hu8622641730871158673.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="411px"
+	
+></p>
+<p>相同的方式，将hello.queue2也绑定到改交换机。</p>
+<p>最终，绑定结果如下：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820807.png"
+	width="978"
+	height="477"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820807_hu13319730683268461540.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820807_hu11726259457600936365.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="205"
+		data-flex-basis="492px"
+	
+></p>
+<h3 id="发送消息">发送消息
+</h3><p>再次回到exchange页面，找到刚刚绑定的<code>amq.fanout</code>，点击进入详情页，再次发送一条消息：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820808.png"
+	width="1092"
+	height="763"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820808_hu15670038542606732063.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820808_hu6850079180354799804.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="143"
+		data-flex-basis="343px"
+	
+></p>
+<p>回到<code>Queues</code>页面，可以发现<code>hello.queue</code>中已经有一条消息了：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-17432504820809.png"
+	width="1051"
+	height="395"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-17432504820809_hu16788590190919236626.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-17432504820809_hu4942800076501842067.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="266"
+		data-flex-basis="638px"
+	
+></p>
+<p>点击队列名称，进入详情页，查看队列详情，这次我们点击get message：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325048208010.png"
+	width="974"
+	height="586"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325048208010_hu15654913287918059467.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325048208010_hu1986678225725098642.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="166"
+		data-flex-basis="398px"
+	
+></p>
+<p>可以看到消息到达队列了：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325048208011.png"
+	width="762"
+	height="578"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325048208011_hu14746741692419077829.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325048208011_hu16957734733456193881.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="131"
+		data-flex-basis="316px"
+	
+></p>
+<p>这个时候如果有消费者监听了MQ的<code>hello.queue1</code>或<code>hello.queue2</code>队列，自然就能接收到消息了。</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329202305257.png"
+	width="916"
+	height="459"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329202305257_hu2219660582404196340.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329202305257_hu1545489312671821949.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329202305257"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="199"
+		data-flex-basis="478px"
+	
+></p>
+<h2 id="数据隔离">数据隔离
+</h2><h3 id="用户管理">用户管理
+</h3><p>点击<code>Admin</code>选项卡，首先会看到RabbitMQ控制台的用户管理界面：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717425.png"
+	width="1580"
+	height="558"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717425_hu2381755380232464244.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717425_hu1638137278810542783.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="283"
+		data-flex-basis="679px"
+	
+></p>
+<p>这里的用户都是RabbitMQ的管理或运维人员。目前只有安装RabbitMQ时添加的<code>itheima</code>这个用户。仔细观察用户表格中的字段，如下：</p>
+<ul>
+<li><code>Name</code>：<code>itheima</code>，也就是用户名</li>
+<li><code>Tags</code>：<code>administrator</code>，说明<code>itheima</code>用户是超级管理员，拥有所有权限</li>
+<li><code>Can access virtual host</code>： <code>/</code>，可以访问的<code>virtual host</code>，这里的<code>/</code>是默认的<code>virtual host</code></li>
+</ul>
+<p>对于小型企业而言，出于成本考虑，我们通常只会搭建一套MQ集群，公司内的多个不同项目同时使用。这个时候为了避免互相干扰， 我们会利用<code>virtual host</code>的隔离特性，将不同项目隔离。一般会做两件事情：</p>
+<ul>
+<li>给每个项目创建独立的运维账号，将管理权限分离。</li>
+<li>给每个项目创建不同的<code>virtual host</code>，将每个项目的数据隔离。</li>
+</ul>
+<p>比如，我们给黑马商城创建一个新的用户，命名为<code>hmall</code>：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717426.png"
+	width="1569"
+	height="755"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717426_hu4180748429497344088.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717426_hu4115716445191907293.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="207"
+		data-flex-basis="498px"
+	
+></p>
+<p>你会发现此时hmall用户没有任何<code>virtual host</code>的访问权限：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717527.png"
+	width="927"
+	height="437"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717527_hu10415112619648439739.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717527_hu317770626178317220.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="212"
+		data-flex-basis="509px"
+	
+></p>
+<p>别急，接下来我们就来授权。</p>
+<h3 id="virtual-host">virtual host
+</h3><p>我们先退出登录：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717528.png"
+	width="1571"
+	height="463"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717528_hu16886004155650288810.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717528_hu3180196074336965219.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="339"
+		data-flex-basis="814px"
+	
+></p>
+<p>切换到刚刚创建的hmall用户登录，然后点击<code>Virtual Hosts</code>菜单，进入<code>virtual host</code>管理页：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717529.png"
+	width="1565"
+	height="507"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717529_hu2642304458099785075.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717529_hu17454125237618155702.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="308"
+		data-flex-basis="740px"
+	
+></p>
+<p>可以看到目前只有一个默认的<code>virtual host</code>，名字为 <code>/</code>。</p>
+<p>我们可以给黑马商城项目创建一个单独的<code>virtual host</code>，而不是使用默认的<code>/</code>。</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717530.png"
+	width="1555"
+	height="685"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717530_hu3060083524513858646.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717530_hu1335890182914955890.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="227"
+		data-flex-basis="544px"
+	
+></p>
+<p>创建完成后如图：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717531.png"
+	width="990"
+	height="287"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717531_hu14406062656093119849.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717531_hu4737037534691442194.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="344"
+		data-flex-basis="827px"
+	
+></p>
+<p>由于我们是登录<code>hmall</code>账户后创建的<code>virtual host</code>，因此回到<code>users</code>菜单，你会发现当前用户已经具备了对<code>/hmall</code>这个<code>virtual host</code>的访问权限了：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717532.png"
+	width="890"
+	height="432"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717532_hu12548930007698173911.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717532_hu18437138817427122421.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="206"
+		data-flex-basis="494px"
+	
+></p>
+<p>此时，点击页面右上角的<code>virtual host</code>下拉菜单，切换<code>virtual host</code>为 <code>/hmall</code>：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717533.png"
+	width="1448"
+	height="277"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717533_hu6277353424186064687.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717533_hu6866510571255495274.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="522"
+		data-flex-basis="1254px"
+	
+></p>
+<p>然后再次查看queues选项卡，会发现之前的队列已经看不到了：</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/-174325207717534.png"
+	width="1443"
+	height="534"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/-174325207717534_hu16264352394209975704.png 480w, /p/mq%E5%9F%BA%E7%A1%80/-174325207717534_hu7243287939753567582.png 1024w"
+	loading="lazy"
+	
+		alt="img"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="270"
+		data-flex-basis="648px"
+	
+></p>
+<p>这就是基于<code>virtual host </code>的隔离效果。</p>
+<h1 id="springamqp">SpringAMQP
+</h1><h2 id="快速入门">快速入门
+</h2><p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329204428105.png"
+	width="1667"
+	height="679"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329204428105_hu6976685752549187811.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329204428105_hu9759771255751438481.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329204428105"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="245"
+		data-flex-basis="589px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329204956187.png"
+	width="1290"
+	height="532"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329204956187_hu14282937853473641581.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329204956187_hu1023918813966171788.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329204956187"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="242"
+		data-flex-basis="581px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329205027331.png"
+	width="1411"
+	height="591"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329205027331_hu7222237480640178220.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329205027331_hu10577368724657143832.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329205027331"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="238"
+		data-flex-basis="572px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329205045344.png"
+	width="1544"
+	height="675"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329205045344_hu12726568561165773841.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329205045344_hu4457444755073899198.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329205045344"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="228"
+		data-flex-basis="548px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329205205931.png"
+	width="1436"
+	height="732"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329205205931_hu17302712754165693687.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329205205931_hu10376532292506687490.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329205205931"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="196"
+		data-flex-basis="470px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329211343418.png"
+	width="1578"
+	height="691"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329211343418_hu1573030282341966239.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329211343418_hu12046202085533541889.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329211343418"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="228"
+		data-flex-basis="548px"
+	
+></p>
+<h2 id="workqueues模型">WorkQueues模型
+</h2><p>什么是WorkQueues模型</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329211527953.png"
+	width="1533"
+	height="653"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329211527953_hu11170682750777522586.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329211527953_hu1010778930981306919.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329211527953"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="234"
+		data-flex-basis="563px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329211603422.png"
+	width="1235"
+	height="399"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329211603422_hu18442693448151856201.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329211603422_hu15980624378195347968.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329211603422"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="309"
+		data-flex-basis="742px"
+	
+></p>
+<p>如果两个消费者处理队列消息的时间不同，那么就会造成阻塞，处理速度快的已经处理完了，而处理速度慢的还在处理，造成资源的浪费以及运行缓慢，所以有了消费者消息推送机制</p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329215154463.png"
+	width="1544"
+	height="636"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329215154463_hu17599669405915534409.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329215154463_hu17011759565314401942.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329215154463"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="242"
+		data-flex-basis="582px"
+	
+></p>
+<p><img src="/p/mq%E5%9F%BA%E7%A1%80/image-20250329215534509.png"
+	width="961"
+	height="463"
+	srcset="/p/mq%E5%9F%BA%E7%A1%80/image-20250329215534509_hu18069053079466258447.png 480w, /p/mq%E5%9F%BA%E7%A1%80/image-20250329215534509_hu12088173970672233513.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250329215534509"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="207"
+		data-flex-basis="498px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java%E5%90%8E%E7%AB%AF/">Java后端</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image.317fbd09b5e8248f610532b681278d1a_hu1056150980366496384.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 服务保护和分布式事务"
+                        
+                        data-hash="md5-MX&#43;9CbXoJI9hBTK2gSeNGg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">服务保护和分布式事务</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="yanbin582/yanbin582.github.io"
+    data-repo-id="R_kgDOOLrAyA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOOLrAyM4CoeXT"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark_dimmed');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2025 严彬-yabi
+    </section>
+    
+    <section class="powerby">
+        
+            学习记录 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
